@@ -145,6 +145,11 @@ if [[ ${PROJECT_ROOT,,} =~ "lineage" ]]; then
     applyPatch "${PATCH_DIR}/proprietary_vendor_google_flame/0003-flame-Update-apps.patch"; #Deblob apps
   fi;
 
+  if enterAndClear "vendor/google/lynx"; then
+    applyPatch "${PATCH_DIR}/proprietary_vendor_google_lynx/0001-lynx-Update-priv-apps.patch"; #Deblob priv-apps
+    applyPatch "${PATCH_DIR}/proprietary_vendor_google_lynx/0002-lynx-Update-apps.patch"; #Deblob apps
+  fi;
+
   if enterAndClear "vendor/google/panther"; then
     applyPatch "${PATCH_DIR}/proprietary_vendor_google_panther/0001-panther-Update-priv-apps.patch"; #Deblob priv-apps
     applyPatch "${PATCH_DIR}/proprietary_vendor_google_panther/0002-panther-Update-apps.patch"; #Deblob apps
