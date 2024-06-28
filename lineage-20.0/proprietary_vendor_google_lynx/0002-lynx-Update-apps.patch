@@ -1,4 +1,4 @@
-From 816b8d87885d22612db7042d6c3bd2dd8ca22914 Mon Sep 17 00:00:00 2001
+From b1714b27758b44384c5ffcc8ae5dbc442468019c Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
 Date: Fri, 21 Jun 2024 18:26:59 -0400
 Subject: [PATCH 2/2] lynx: Update apps
@@ -9,7 +9,7 @@ Subject: [PATCH 2/2] lynx: Update apps
  2 files changed, 24 deletions(-)
 
 diff --git a/Android.bp b/Android.bp
-index 214f380..92053b5 100644
+index 99c7c77..87aa7f3 100644
 --- a/Android.bp
 +++ b/Android.bp
 @@ -5,28 +5,6 @@
@@ -42,18 +42,18 @@ index 214f380..92053b5 100644
  	name: "CarrierSettings",
  	owner: "google",
 diff --git a/lynx-vendor.mk b/lynx-vendor.mk
-index b233175..a85aab6 100644
+index 7d80ea5..0866eb1 100644
 --- a/lynx-vendor.mk
 +++ b/lynx-vendor.mk
-@@ -55,8 +55,6 @@ PRODUCT_COPY_FILES += \
+@@ -66,8 +66,6 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/system_ext/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so \
  
  PRODUCT_PACKAGES += \
 -    PixelCameraServicesL10 \
 -    VZWAPNLib \
      CarrierSettings \
-     OemRilService \
-     PixelNfc \
+     WfcActivation \
+     OemRilHookService \
 -- 
 2.39.2
 

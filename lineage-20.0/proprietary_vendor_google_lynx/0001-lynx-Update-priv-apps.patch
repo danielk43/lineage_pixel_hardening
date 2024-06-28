@@ -1,15 +1,15 @@
-From 8cd2099481fc0f15d7d0dc03f22a3e8cfd8d39ae Mon Sep 17 00:00:00 2001
+From 917ca523e03b5056eb8a6f1bf5b85496244e347b Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Fri, 21 Jun 2024 18:25:39 -0400
+Date: Thu, 27 Jun 2024 08:03:25 -0400
 Subject: [PATCH 1/2] lynx: Update priv-apps
 
 ---
- Android.bp     | 337 -------------------------------------------------
- lynx-vendor.mk |  61 ---------
- 2 files changed, 398 deletions(-)
+ Android.bp     | 330 -------------------------------------------------
+ lynx-vendor.mk |  47 -------
+ 2 files changed, 377 deletions(-)
 
 diff --git a/Android.bp b/Android.bp
-index efdeaca..214f380 100644
+index efdeaca..99c7c77 100644
 --- a/Android.bp
 +++ b/Android.bp
 @@ -27,30 +27,6 @@ android_app_import {
@@ -359,21 +359,7 @@ index efdeaca..214f380 100644
  android_app_import {
  	name: "grilservice",
  	owner: "google",
-@@ -436,13 +124,6 @@ dex_import {
- 	system_ext_specific: true,
- }
- 
--dex_import {
--	name: "com.android.hotwordenrollment.common.util",
--	owner: "google",
--	jars: ["proprietary/system_ext/framework/com.android.hotwordenrollment.common.util.jar"],
--	system_ext_specific: true,
--}
--
- dex_import {
- 	name: "com.google.android.camera.extensions",
- 	owner: "google",
-@@ -508,15 +189,6 @@ dex_import {
+@@ -508,15 +196,6 @@ dex_import {
  	soc_specific: true,
  }
  
@@ -389,7 +375,7 @@ index efdeaca..214f380 100644
  prebuilt_etc_xml {
  	name: "android.hardware.camera.provider@2.7-service-google-apex",
  	owner: "google",
-@@ -580,15 +252,6 @@ prebuilt_etc_xml {
+@@ -580,15 +259,6 @@ prebuilt_etc_xml {
  	soc_specific: true,
  }
  
@@ -406,43 +392,19 @@ index efdeaca..214f380 100644
  	name: "manifest_android.hardware.drm-service.widevine",
  	owner: "google",
 diff --git a/lynx-vendor.mk b/lynx-vendor.mk
-index afc9db8..b233175 100644
+index afc9db8..7d80ea5 100644
 --- a/lynx-vendor.mk
 +++ b/lynx-vendor.mk
-@@ -15,14 +15,7 @@ PRODUCT_COPY_FILES += \
-     vendor/google/lynx/proprietary/product/etc/firmware/music_detector.sound_model_2:$(TARGET_COPY_OUT_PRODUCT)/etc/firmware/music_detector.sound_model_2 \
-     vendor/google/lynx/proprietary/product/etc/firmware/music_detector.sound_model_tflite:$(TARGET_COPY_OUT_PRODUCT)/etc/firmware/music_detector.sound_model_tflite \
-     vendor/google/lynx/proprietary/product/etc/permissions/com.android.omadm.service.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.android.omadm.service.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.android.sdm.plugins.connmo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.android.sdm.plugins.connmo.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.android.sdm.plugins.dcmo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.android.sdm.plugins.dcmo.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.android.sdm.plugins.diagmon.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.android.sdm.plugins.diagmon.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.google.android.hardwareinfo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.hardwareinfo.xml \
-     vendor/google/lynx/proprietary/product/etc/permissions/com.google.omadm.trigger.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.omadm.trigger.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.verizon.apn.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.verizon.apn.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/com.verizon.services.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.verizon.services.xml \
--    vendor/google/lynx/proprietary/product/etc/permissions/features-verizon.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/features-verizon.xml \
-     vendor/google/lynx/proprietary/product/etc/permissions/privapp-permissions-google-p-lineage.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google-p-lineage.xml \
-     vendor/google/lynx/proprietary/product/etc/sysconfig/allowlist_com.android.omadm.service.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.android.omadm.service.xml \
-     vendor/google/lynx/proprietary/product/etc/sysconfig/allowlist_com.shannon.imsservice.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.shannon.imsservice.xml \
-@@ -44,79 +37,34 @@ PRODUCT_COPY_FILES += \
-     vendor/google/lynx/proprietary/product/lib64/libdmjavaplugin.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libdmjavaplugin.so \
-     vendor/google/lynx/proprietary/system_ext/bin/hw/vendor.google.edgetpu_app_service@1.0-service:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/hw/vendor.google.edgetpu_app_service@1.0-service \
-     vendor/google/lynx/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
--    vendor/google/lynx/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
+@@ -47,8 +47,6 @@ PRODUCT_COPY_FILES += \
+     vendor/google/lynx/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
      vendor/google/lynx/proprietary/system_ext/etc/permissions/com.android.omadm.radioconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.omadm.radioconfig.xml \
      vendor/google/lynx/proprietary/system_ext/etc/permissions/com.google.android.camera.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camera.extensions.xml \
 -    vendor/google/lynx/proprietary/system_ext/etc/permissions/com.google.euiccpixel.permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.euiccpixel.permissions.xml \
 -    vendor/google/lynx/proprietary/system_ext/etc/permissions/com.google.euiccpixel.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.euiccpixel.xml \
      vendor/google/lynx/proprietary/system_ext/etc/permissions/com.samsung.slsi.telephony.oemril.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.samsung.slsi.telephony.oemril.xml \
      vendor/google/lynx/proprietary/system_ext/etc/permissions/com.shannon.imsservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.shannon.imsservice.xml \
--    vendor/google/lynx/proprietary/system_ext/etc/permissions/com.shannon.rcsservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.shannon.rcsservice.xml \
--    vendor/google/lynx/proprietary/system_ext/etc/permissions/com.verizon.llkagent.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.verizon.llkagent.xml \
-     vendor/google/lynx/proprietary/system_ext/etc/permissions/google-ril.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/google-ril.xml \
-     vendor/google/lynx/proprietary/system_ext/etc/permissions/oemrilhook.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/oemrilhook.xml \
-     vendor/google/lynx/proprietary/system_ext/etc/permissions/privapp-permissions-google-se-lineage.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-google-se-lineage.xml \
--    vendor/google/lynx/proprietary/system_ext/etc/permissions/vzw_mvs_permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/vzw_mvs_permissions.xml \
-     vendor/google/lynx/proprietary/system_ext/lib/libmediaadaptor.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib/libmediaadaptor.so \
-     vendor/google/lynx/proprietary/system_ext/lib/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so \
+     vendor/google/lynx/proprietary/system_ext/etc/permissions/com.shannon.rcsservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.shannon.rcsservice.xml \
+@@ -62,57 +60,21 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/system_ext/lib/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so \
      vendor/google/lynx/proprietary/system_ext/lib64/com.google.edgetpu_app_service-V2-ndk.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib64/com.google.edgetpu_app_service-V2-ndk.so \
      vendor/google/lynx/proprietary/system_ext/lib64/com.google.edgetpu_vendor_service-V2-ndk.so:$(TARGET_COPY_OUT_SYSTEM_EXT)/lib64/com.google.edgetpu_vendor_service-V2-ndk.so \
@@ -481,8 +443,8 @@ index afc9db8..b233175 100644
 -    HotwordEnrollmentXGoogleFUSIONPro \
 -    OemDmTrigger \
 -    TetheringEntitlement \
--    WfcActivation \
--    OemRilHookService \
+     WfcActivation \
+     OemRilHookService \
 -    CarrierSetup \
 -    ConnectivityThermalPowerManager \
 -    EuiccGoogleOverlay \
@@ -500,11 +462,7 @@ index afc9db8..b233175 100644
      grilservice \
      libhwinfo \
      RadioConfigLib \
--    com.android.hotwordenrollment.common.util \
-     com.google.android.camera.extensions \
-     google-ril \
-     oemrilhook \
-@@ -364,8 +312,6 @@ PRODUCT_COPY_FILES += \
+@@ -364,8 +326,6 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/vendor/bin/chre:$(TARGET_COPY_OUT_VENDOR)/bin/chre \
      vendor/google/lynx/proprietary/vendor/bin/cnss-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/cnss-daemon \
      vendor/google/lynx/proprietary/vendor/bin/dmd:$(TARGET_COPY_OUT_VENDOR)/bin/dmd \
@@ -513,7 +471,7 @@ index afc9db8..b233175 100644
      vendor/google/lynx/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti \
      vendor/google/lynx/proprietary/vendor/bin/hw/android.hardware.confirmationui@1.0-service.trusty.vendor:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.confirmationui@1.0-service.trusty.vendor \
      vendor/google/lynx/proprietary/vendor/bin/hw/android.hardware.drm-service.widevine:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.drm-service.widevine \
-@@ -508,7 +454,6 @@ PRODUCT_COPY_FILES += \
+@@ -508,7 +468,6 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/vendor/etc/database/ecc_version:$(TARGET_COPY_OUT_VENDOR)/etc/database/ecc_version \
      vendor/google/lynx/proprietary/vendor/etc/displayconfig/display_id_4619827677550801152.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4619827677550801152.xml \
      vendor/google/lynx/proprietary/vendor/etc/faceauth_pipeline_input_lynx:$(TARGET_COPY_OUT_VENDOR)/etc/faceauth_pipeline_input_lynx \
@@ -521,7 +479,7 @@ index afc9db8..b233175 100644
      vendor/google/lynx/proprietary/vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.bluetooth@1.0-service-qti.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/android.hardware.camera.provider@2.7-service-google-apex.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.camera.provider@2.7-service-google-apex.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/android.hardware.confirmationui@1.0-service.trusty.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.confirmationui@1.0-service.trusty.vendor.rc \
-@@ -527,7 +472,6 @@ PRODUCT_COPY_FILES += \
+@@ -527,7 +486,6 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/vendor/etc/init/chre_daemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/chre_daemon.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
@@ -529,7 +487,7 @@ index afc9db8..b233175 100644
      vendor/google/lynx/proprietary/vendor/etc/init/google.hardware.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@1.0-service.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/init.faceauth.lynx.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.faceauth.lynx.rc \
      vendor/google/lynx/proprietary/vendor/etc/init/init.modem_logging_control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.modem_logging_control.rc \
-@@ -1490,11 +1434,9 @@ PRODUCT_COPY_FILES += \
+@@ -1490,11 +1448,9 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/vendor/lib64/audio_tunnel_aoc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/audio_tunnel_aoc.so \
      vendor/google/lynx/proprietary/vendor/lib64/audio_usb_aoc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/audio_usb_aoc.so \
      vendor/google/lynx/proprietary/vendor/lib64/audio_waves_aoc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/audio_waves_aoc.so \
@@ -541,7 +499,7 @@ index afc9db8..b233175 100644
      vendor/google/lynx/proprietary/vendor/lib64/com.google.input-V1-ndk.so:$(TARGET_COPY_OUT_VENDOR)/lib64/com.google.input-V1-ndk.so \
      vendor/google/lynx/proprietary/vendor/lib64/egl/libGLES_mali.so:$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLES_mali.so \
      vendor/google/lynx/proprietary/vendor/lib64/fp_utils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/fp_utils.so \
-@@ -1608,7 +1550,6 @@ PRODUCT_COPY_FILES += \
+@@ -1608,7 +1564,6 @@ PRODUCT_COPY_FILES += \
      vendor/google/lynx/proprietary/vendor/lib64/libsueznanoappclients.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsueznanoappclients.so \
      vendor/google/lynx/proprietary/vendor/lib64/libtouchflow.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtouchflow.so \
      vendor/google/lynx/proprietary/vendor/lib64/libusf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libusf.so \
@@ -549,7 +507,7 @@ index afc9db8..b233175 100644
      vendor/google/lynx/proprietary/vendor/lib64/libwlcproto_13.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libwlcproto_13.so \
      vendor/google/lynx/proprietary/vendor/lib64/libwvaidl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libwvaidl.so \
      vendor/google/lynx/proprietary/vendor/lib64/sensors.usf.so:$(TARGET_COPY_OUT_VENDOR)/lib64/sensors.usf.so \
-@@ -1633,7 +1574,6 @@ PRODUCT_PACKAGES += \
+@@ -1633,7 +1588,6 @@ PRODUCT_PACKAGES += \
      libOpenCL \
      com.google.pixel.camera.hal \
      com.google.android.camera.experimental2022 \
@@ -557,7 +515,7 @@ index afc9db8..b233175 100644
      android.hardware.camera.provider@2.7-service-google-apex \
      android.hardware.confirmationui@1.0-service.trusty.vendor \
      android.hardware.identity.strongbox \
-@@ -1641,7 +1581,6 @@ PRODUCT_PACKAGES += \
+@@ -1641,7 +1595,6 @@ PRODUCT_PACKAGES += \
      android.hardware.security.keymint-service.citadel \
      android.hardware.weaver@1.0-service.citadel \
      dmd \
