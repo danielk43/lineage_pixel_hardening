@@ -180,10 +180,6 @@ elif [[ ${PROJECT_ROOT,,} =~ "graphene" ]]; then
   #   applyPatch "${PATCH_DIR}/platform_packages_modules_Connectivity/0001-Update-dns-references.patch"; #Use quad9 dns
   # fi;
 
-  # if enterAndClear "script"; then
-  #   applyPatch "${PATCH_DIR}/script/0001-Alias-signify-cmd-if-applicable.patch"; #Add shim for signing on debian
-  # fi;
-
   # do this outside of DOS for now
   cd frameworks/base
   git am ${PATCH_DIR}/platform_frameworks_base/0001-Update-dns-references.patch
@@ -196,10 +192,6 @@ elif [[ ${PROJECT_ROOT,,} =~ "graphene" ]]; then
   
   cd packages/modules/Connectivity
   git am ${PATCH_DIR}/platform_packages_modules_Connectivity/0001-Update-dns-references.patch
-  cd ${PROJECT_ROOT}
-
-  cd script
-  git am ${PATCH_DIR}/script/0001-Alias-signify-cmd-if-applicable.patch
   cd ${PROJECT_ROOT}
 
 fi

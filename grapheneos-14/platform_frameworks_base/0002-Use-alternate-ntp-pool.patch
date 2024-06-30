@@ -8,15 +8,14 @@ Subject: [PATCH 2/2] Use alternate ntp pool
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
-index 5b2213bb7149..209c913ae22f 100644
 --- a/core/res/res/values/config.xml
 +++ b/core/res/res/values/config.xml
-@@ -2478,7 +2478,7 @@
+@@ -2649,7 +2649,7 @@
           Items must be in the form: "ntp://<host>[:port]"
           This is not a registered IANA URI scheme. -->
      <string-array translatable="false" name="config_ntpServers">
 -        <item>ntp://time.android.com</item>
 +        <item>ntp://us.pool.ntp.org</item>
      </string-array>
-     <!-- Remote servers that can provide HTTPS time responses -->
-     <string-array name="config_httpsTimeServers" translatable="false">
+     <!-- SNTP client config: Timeout to wait for an NTP server response in milliseconds. -->
+     <integer name="config_ntpTimeout">5000</integer>
