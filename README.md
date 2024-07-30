@@ -1,19 +1,19 @@
 # lineage_pixel_hardening
 ## patches
-Patching for some Pixel devices on LineageOS-20.0 which provide extra features.  
+Patching for some Pixel devices on LineageOS-20 - 21 which provide extra features.  
+All non-vendor patches have been moved to the DOS fork.  
 
 Uses the Divested-Mobile/DivestOS-Build project fork to source patching functions.  
 Uses the LineageOS4MicroG/android_vendor_partner_gms project fork for extra apks.  
 
 Combine with DOS source and kernel patches for LineageOS hardening without rebranding, customizable apks.
-* Patches from this repo:
+* Patches originally from this repo:
     * Restore gesture input (swipe typing) on native AOSP keyboard
-    * Enable verified boot (AVB) to re-lock bootloader (optional)
-    * Add MicroG restricted signature spoofing and installation (optional)
-    * Replace default browser and webview with Bromite and Mulch
-    * Replace Dialer app with GrapheneOS
+    * Enable verified boot (AVB) to re-lock bootloader
+    * Replace default browser and webview with Cromite and Mulch
     * Add FDroid, AuroraStore, and privileged extensions
     * Add GrapheneOS PDFViewer
+    * Add GrapheneOS SUPL toggle
     * Vendor deblobbing specific to Pixel
     * Disable Google Assistant, RCS, CNE, sound trigger
     * Use non-Android NTP server
@@ -43,6 +43,7 @@ Combine with DOS source and kernel patches for LineageOS hardening without rebra
     * Skip strict update compatibiltity checks
     * Support Android Wear
     * Creates popups to install proprietary print apps
+    * Hosts cache fix for DNS-based blocking
     * Lots more... (See DOS 20.0 Patch.sh)
 * GrapheneOS patches:
     * Hardened memory allocation
@@ -80,18 +81,13 @@ Set these variables:
 * Required
     * GIT_LOCAL (Path leading to both lineage_pixel_hardening and DivestOS repos. Must be in same dir for now)
 * Optional (LOS only)
-    * AVB (Include patches for custom AVB key)
     * LINEAGE_BUILDTYPE (Set with this var for something besides UNOFFICIAL)
-    * MICROG (Apply restricted sig spoof and add MicroG apks. Use this if not also using WITH_GMS)
-    * OLD_VVM (Revert visual voicemail config update which breaks vvm for some carriers)
     * WITH_GMS (Apply spoof, Use partitioning logic + gms makefile apks in vendor/lineage)
     * GMS_MAKEFILE (Specify path to makefile with apks in vendor/partner_gms)
 
 Copy the appropriate set of manifests to .repo/local_manifests (LOS only)  
 
-If AVB var is set, generate the private key + pkmd per [GrapheneOS instructions](https://grapheneos.org/build#generating-release-signing-keys) under keys/$device  
-
-Run only two AVB steps (generate pem + extract), substituting -scrypt with -nocrypt  
+Generate AVB private key + pkmd per [GrapheneOS instructions](https://grapheneos.org/build#generating-release-signing-keys) under keys/$device (Run only two AVB steps (generate pem + extract), substituting -scrypt with -nocrypt)  
 
 Prepare source:
 ```
@@ -116,6 +112,6 @@ If generating keys, make sure to also add bluetooth and sdksandbox to the key ge
 
 Once finished, before installing the OS flash avb_pkmd.bin after if necessary  
 ## Notes
-Project is WIP  
+LOS21 is WIP  
 LOS20 included devices supported  
-GOS13 all devices partially supported (no DOS patching, manual update of gesture input lib)  
+GOS14 all devices partially supported (no DOS patching, manual update of gesture input lib)  
