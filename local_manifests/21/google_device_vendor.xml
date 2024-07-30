@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
+  <remote name="gitlab" fetch="https://gitlab.com" revision="main" />
+
   <!-- Device repos -->
+  <project path="device/google/akita" name="LineageOS/android_device_google_akita" revision="lineage-21" />
   <project path="device/google/barbet" name="LineageOS/android_device_google_barbet" revision="lineage-21" />
-  <project path="device/google/blueline" name="LineageOS/android_device_google_blueline" revision="lineage-21" />
-  <project path="device/google/bramble" name="LineageOS/android_device_google_bramble" revision="lineage-21" />
-  <project path="device/google/coral" name="LineageOS/android_device_google_coral" revision="lineage-21" />
-  <project path="device/google/crosshatch" name="LineageOS/android_device_google_crosshatch" revision="lineage-21" />
-  <project path="device/google/flame" name="LineageOS/android_device_google_flame" revision="lineage-21" />
-  <project path="device/google/redbull" name="LineageOS/android_device_google_redbull" revision="lineage-21" />
-  <project path="device/google/redfin" name="LineageOS/android_device_google_redfin" revision="lineage-21" />
-  <project path="device/google/gs101" name="LineageOS/android_device_google_gs101" revision="lineage-21" />
+  <project path="device/google/bluejay" name="LineageOS/android_device_google_bluejay" revision="lineage-21" />
+  <project path="device/google/cheetah" name="LineageOS/android_device_google_cheetah" revision="lineage-21" />
+  <project path="device/google/felix" name="LineageOS/android_device_google_felix" revision="lineage-21" />
+  <project path="device/google/husky" name="LineageOS/android_device_google_husky" revision="lineage-21" />
   <project path="device/google/gs201" name="LineageOS/android_device_google_gs201" revision="lineage-21" />
-  <project path="device/google/tangorpro" name="LineageOS/android_device_google_tangorpro" revision="lineage-21" />
-  <project path="device/google/beast" name="LineageOS/android_device_google_beast" revision="lineage-21" />
+  <project path="device/google/gs101" name="LineageOS/android_device_google_gs101" revision="lineage-21" />
+  <project path="device/google/gs-common" name="LineageOS/android_device_google_gs-common" revision="lineage-21" />
   <project path="device/google/lynx" name="LineageOS/android_device_google_lynx" revision="lineage-21" />
+  <project path="device/google/oriole" name="LineageOS/android_device_google_oriole" revision="lineage-21" />
   <project path="device/google/pantah" name="LineageOS/android_device_google_pantah" revision="lineage-21" />
   <project path="device/google/panther" name="LineageOS/android_device_google_panther" revision="lineage-21" />
-  <project path="device/google/oriole" name="LineageOS/android_device_google_oriole" revision="lineage-21" />
+  <project path="device/google/raven" name="LineageOS/android_device_google_raven" revision="lineage-21" />
   <project path="device/google/raviole" name="LineageOS/android_device_google_raviole" revision="lineage-21" />
-  <project path="device/google/bluejay" name="LineageOS/android_device_google_bluejay" revision="lineage-21" />
-  <project path="device/google/felix" name="LineageOS/android_device_google_felix" revision="lineage-21" />
+  <project path="device/google/redbull" name="LineageOS/android_device_google_redbull" revision="lineage-21" />
+  <project path="device/google/shiba" name="LineageOS/android_device_google_shiba" revision="lineage-21" />
+  <project path="device/google/shusky" name="LineageOS/android_device_google_shusky" revision="lineage-21" />
+  <project path="device/google/tangorpro" name="LineageOS/android_device_google_tangorpro" revision="lineage-21" />
+  <project path="device/google/zuma" name="LineageOS/android_device_google_zuma" revision="lineage-21" />
 
   <!-- Kernels -->
-  <project path="kernel/google/msm-4.14" name="LineageOS/android_kernel_google_msm-4.14" revision="lineage-21" />
-  <project path="kernel/google/msm-4.9" name="LineageOS/android_kernel_google_msm-4.9" revision="lineage-21" />
+  <project path="device/google/akita-kernel" remote="aosp-akita" name="device/google/akita-kernel" clone-depth="1" />
+  <project path="device/google/bluejay-kernel" remote="aosp-bluejay" name="device/google/bluejay-kernel" clone-depth="1" />
+  <project path="device/google/felix-kernel" remote="aosp-felix" name="device/google/felix-kernel" clone-depth="1" />
+  <project path="device/google/lynx-kernel" remote="aosp-lynx" name="device/google/lynx-kernel" clone-depth="1" />
+  <project path="device/google/pantah-kernel" remote="aosp-pantah" name="device/google/pantah-kernel" clone-depth="1" />
+  <project path="device/google/raviole-kernel" remote="aosp-raviole" name="device/google/raviole-kernel" clone-depth="1" />
+  <project path="device/google/shusky-kernel" remote="aosp-shusky" name="device/google/shusky-kernel" clone-depth="1" />
+  <project path="device/google/tangorpro-kernel" remote="aosp-tangorpro" name="device/google/tangorpro-kernel" clone-depth="1" />
   <project path="kernel/google/redbull" name="LineageOS/android_kernel_google_redbull" revision="lineage-21" />
-  <!-- ref does not exist yet
-    <project path="kernel/google/gs101" name="LineageOS/android_kernel_google_gs101" revision="lineage-21" />
-    <project path="kernel/google/gs101/private/gs-google" name="LineageOS/android_kernel_google_gs101" revision="lineage-21" />
-  -->
-  <project path="kernel/google/gs201" name="LineageOS/android_kernel_google_gs201" revision="lineage-21" />
-  <project path="kernel/google/gs201/private/gs-google" name="LineageOS/android_kernel_google_gs201" revision="lineage-21" />
 
   <!-- Vendor blobs -->
+  <project path="vendor/google/akita" name="TheMuppets/proprietary_vendor_google_akita" revision="lineage-21" clone-depth="1" />
   <project path="vendor/google/barbet" name="TheMuppets/proprietary_vendor_google_barbet" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/blueline" name="TheMuppets/proprietary_vendor_google_blueline" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/bramble" name="TheMuppets/proprietary_vendor_google_bramble" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/coral" name="TheMuppets/proprietary_vendor_google_coral" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/crosshatch" name="TheMuppets/proprietary_vendor_google_crosshatch" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/flame" name="TheMuppets/proprietary_vendor_google_flame" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/redfin" name="TheMuppets/proprietary_vendor_google_redfin" revision="lineage-21" clone-depth="1" />
-
-  <project path="vendor/google/bluejay" name="the-muppets/proprietary_vendor_google_bluejay" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/cheetah" name="the-muppets/proprietary_vendor_google_cheetah" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/felix" name="the-muppets/proprietary_vendor_google_felix" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/lynx" name="the-muppets/proprietary_vendor_google_lynx" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/oriole" name="the-muppets/proprietary_vendor_google_oriole" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/panther" name="the-muppets/proprietary_vendor_google_panther" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/raven" name="the-muppets/proprietary_vendor_google_raven" remote="gitlab" revision="lineage-21" clone-depth="1" />
-  <project path="vendor/google/tangorpro" name="the-muppets/proprietary_vendor_google_tangorpro" remote="gitlab" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/bluejay" name="TheMuppets/proprietary_vendor_google_bluejay" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/cheetah" name="TheMuppets/proprietary_vendor_google_cheetah" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/felix" name="TheMuppets/proprietary_vendor_google_felix" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/husky" name="TheMuppets/proprietary_vendor_google_husky" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/lynx" name="TheMuppets/proprietary_vendor_google_lynx" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/oriole" name="TheMuppets/proprietary_vendor_google_oriole" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/panther" name="TheMuppets/proprietary_vendor_google_panther" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/raven" name="TheMuppets/proprietary_vendor_google_raven" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/shiba" name="TheMuppets/proprietary_vendor_google_shiba" revision="lineage-21" clone-depth="1" />
+  <project path="vendor/google/tangorpro" name="TheMuppets/proprietary_vendor_google_tangorpro" revision="lineage-21" clone-depth="1" />
 
 </manifest>

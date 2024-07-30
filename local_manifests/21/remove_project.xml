@@ -6,7 +6,6 @@
   <remove-project name="device/generic/mini-emulator-armv7-a-neon" />
   <remove-project name="device/generic/mini-emulator-x86" />
   <remove-project name="device/generic/mini-emulator-x86_64" />
-  <remove-project name="device/generic/qemu" />
   <remove-project name="LineageOS/android_external_ant-wireless_ant_native" />
   <remove-project name="LineageOS/android_external_ant-wireless_ant_service" />
   <remove-project name="LineageOS/android_external_bash" />
@@ -14,6 +13,8 @@
   <remove-project name="LineageOS/android_external_libncurses" />
   <remove-project name="LineageOS/android_external_nano" />
   <remove-project name="LineageOS/android_external_openssh" />
+  <remove-project name="LineageOS/android_external_rsync" />
+  <remove-project name="LineageOS/android_external_unrar" />
   <remove-project name="LineageOS/android_external_vim" />
   <remove-project name="LineageOS/android_packages_apps_Eleven" />
   <remove-project name="LineageOS/android_packages_apps_Stk" />
@@ -25,8 +26,8 @@
   <remove-project name="LineageOS/mirror" />
   <remove-project name="LineageOS/www" />
   <remove-project name="platform/external/iperf3" />
-  <remove-project name="platform/packages/apps/Music" />
   <remove-project name="platform/packages/apps/Browser2" />
+  <remove-project name="platform/packages/apps/Music" />
   <remove-project name="platform/packages/apps/MusicFX" />
   <remove-project name="platform/packages/apps/QuickSearchBox" />
   <remove-project name="platform/packages/apps/SampleLocationAttribution" />

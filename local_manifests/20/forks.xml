@@ -2,7 +2,7 @@
 <manifest>
 
   <remote name="gitlab" fetch="https://gitlab.com" revision="main" />
-  <remote name="angry" fetch="https://gitea.angry.im/" />
+  <remote name="angry" fetch="https://gitea.angry.im" />
 
   <remove-project name="LineageOS/android_external_chromium-webview_patches" />
   <remove-project name="LineageOS/android_external_chromium-webview_prebuilt_arm" />
@@ -13,10 +13,16 @@
   <remove-project name="LineageOS/android_packages_apps_Camera2" />
   <remove-project name="LineageOS/android_packages_apps_Jelly" />
 
-  <project path="external/chromium" name="danielk_43/android_external_chromium" remote="gitlab" clone-depth="1" />
-  <project path="external/hardened_malloc" name="GrapheneOS/hardened_malloc" revision="13" />
+  <!--
+  <project path="external/chromium" name="danielk43/android_external_chromium" remote="gitlab" revision="trichrome" clone-depth="1" />
+  -->
+  <project path="external/chromium" name="danielk43/android_external_chromium" remote="gitlab" clone-depth="1" />
+  <project path="external/chromium-webview" name="divested-mobile/mulch" remote="gitlab" revision="master" clone-depth="1" />
+  <project path="external/hardened_malloc" name="GrapheneOS/hardened_malloc" revision="749640c274d54e084505a24fa758bcb5f96a25ef" />
   <project path="external/SecureCamera" name="GrapheneOS/platform_external_Camera" revision="14" clone-depth="1" />
+  <!--
   <project path="packages/apps/CarrierConfig2" name="GrapheneOS/platform_packages_apps_CarrierConfig2" revision="e710a67ed64620fc11f62520cceef4bba64dc2a6" />
+  -->
   <project path="packages/apps/OpenEUICC" name="PeterCxy/OpenEUICC" remote="angry" revision="6add8c89ac141f177cd8d124a0a955232f4222f9" />
   <project path="prebuilts/openeuicc-deps" name="PeterCxy/android_prebuilts_openeuicc-deps" remote="angry" revision="55f3e2c7ab26484f7478b26540fa14392d0c2cd7" />
   <project path="vendor/partner_gms" name="danielk43/android_vendor_partner_gms" revision="main" clone-depth="1" />
