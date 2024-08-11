@@ -71,6 +71,18 @@ elif [[ ${PROJECT_ROOT,,} =~ "graphene" ]]; then
   git am ${PATCH_DIR}/platform_packages_modules_Connectivity/0001-Update-dns-references.patch
   cd ${PROJECT_ROOT}
 
+  [[ ! -f libjni_latinimegoogle.so ]] && curl -LO https://gitlab.com/MindTheGapps/vendor_gapps/-/raw/tau/arm64/proprietary/product/lib64/libjni_latinimegoogle.so
+  for vendor_device_dir in vendor/google_devices/*
+  do
+    cd "${vendor_device_dir}"
+      for patch_path in "${PATCH_DIR}"/proprietary_vendor_google_$(basename $vendor_device_dir)/*.patch
+      do
+        patch -p1 < "${patch_path}"
+        cp -fp "${PROJECT_ROOT}"/libjni_latinimegoogle.so proprietary/product/lib64
+        chmod 444 proprietary/product/lib64/libjni_latinimegoogle.so
+      done
+    cd - >/dev/null
+  done
 fi
 
 #

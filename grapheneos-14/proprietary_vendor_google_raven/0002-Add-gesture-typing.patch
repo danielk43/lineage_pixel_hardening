@@ -1,0 +1,50 @@
+From 639047e65015ba4c54f2b92afbba7bd2d6356038 Mon Sep 17 00:00:00 2001
+From: danielk43 <11856117+danielk43@users.noreply.github.com>
+Date: Sun, 11 Aug 2024 12:49:39 -0400
+Subject: [PATCH 2/2] Add gesture typing
+
+---
+ proprietary/Android.bp       | 14 ++++++++++++++
+ proprietary/device-vendor.mk |  1 +
+ 2 files changed, 15 insertions(+)
+
+diff --git a/proprietary/Android.bp b/proprietary/Android.bp
+index ce23bbb..e41c245 100644
+--- a/proprietary/Android.bp
++++ b/proprietary/Android.bp
+@@ -31,6 +31,20 @@ cc_prebuilt_library_shared {
+     product_specific: true,
+ }
+ 
++cc_prebuilt_library_shared {
++    name: "libjni_latinimegoogle__product",
++    owner: "google_devices",
++    stem: "libjni_latinimegoogle",
++    target: {
++        android_arm64: { srcs: [ "product/lib64/libjni_latinimegoogle.so" ] }
++    },
++    compile_multilib: "64",
++    check_elf_files: false,
++    prefer: true,
++    strip: { none: true },
++    product_specific: true,
++}
++
+ android_app_import {
+     name: "OemRilHookService",
+     owner: "google_devices",
+diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
+index ba1e0a7..38f1474 100644
+--- a/proprietary/device-vendor.mk
++++ b/proprietary/device-vendor.mk
+@@ -253,6 +253,7 @@ PRODUCT_PACKAGES += \
+     libdisplaycolor \
+     libdmengine__product \
+     libdmjavaplugin__product \
++    libjni_latinimegoogle__product \
+     libedgetpu_client.google \
+     libedgetpu_dba.google__system_ext \
+     libedgetpu_tachyon.google__system_ext \
+-- 
+2.39.2
+
