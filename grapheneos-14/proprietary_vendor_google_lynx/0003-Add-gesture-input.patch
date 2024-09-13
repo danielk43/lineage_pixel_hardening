@@ -1,7 +1,7 @@
-From d51333a697c745dfd3ced512e046920b22822714 Mon Sep 17 00:00:00 2001
+From 33a38f567a1d665aa19e85b1afc08f5bba46508c Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Sun, 11 Aug 2024 12:51:00 -0400
-Subject: [PATCH 2/2] Add gesture typing
+Date: Mon, 26 Aug 2024 15:48:15 -0400
+Subject: [PATCH 3/3] Add gesture input
 
 ---
  proprietary/Android.bp       | 14 ++++++++++++++
@@ -9,7 +9,6 @@ Subject: [PATCH 2/2] Add gesture typing
  2 files changed, 15 insertions(+)
 
 diff --git a/proprietary/Android.bp b/proprietary/Android.bp
-index 63813ff..1aa00b4 100644
 --- a/proprietary/Android.bp
 +++ b/proprietary/Android.bp
 @@ -31,6 +31,20 @@ cc_prebuilt_library_shared {
@@ -31,20 +30,19 @@ index 63813ff..1aa00b4 100644
 +}
 +
  android_app_import {
-     name: "OemRilHookService",
+     name: "PixelCameraServices",
      owner: "google_devices",
 diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
-index 4490bd4..728e3e1 100644
 --- a/proprietary/device-vendor.mk
 +++ b/proprietary/device-vendor.mk
-@@ -276,6 +276,7 @@ PRODUCT_PACKAGES += \
-     libdisplaycolor \
-     libdmengine__product \
-     libdmjavaplugin__product \
+@@ -323,6 +323,7 @@ PRODUCT_PACKAGES += \
+     libidl \
+     libion_exynos \
+     libion.vendor \
 +    libjni_latinimegoogle__product \
-     libdrm.vendor:32 \
-     libedgetpu_client.google \
-     libedgetpu_dba.google__system_ext \
+     libjson \
+     libjsoncpp.vendor:32 \
+     libkeymaster4support.vendor:64 \
 -- 
 2.39.2
 

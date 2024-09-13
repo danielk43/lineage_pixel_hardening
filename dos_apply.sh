@@ -18,7 +18,7 @@ umask 0022;
 set -eo pipefail;
 
 if [[ -n ${ANDROID_BUILD_TOP} ]]; then
-  echo "ANDROID_BUILD_TOP set, must contain major version"
+  echo ANDROID_BUILD_TOP=${ANDROID_BUILD_TOP}
   export PROJECT_ROOT=${ANDROID_BUILD_TOP}
 else
   echo "ANDROID_BUILD_TOP not set, using PWD for project root"
@@ -26,16 +26,21 @@ else
 fi
 
 echo PROJECT_ROOT=${PROJECT_ROOT}
-export PATCH_DIR="${GIT_LOCAL}/lineage_pixel_hardening/${PROJECT_ROOT##*/}"
+echo DEVICE=${device}
+echo ANDROID_PLATFORM=${android_platform}
+echo ANDROID_VERSION_NUMBER=${android_version_number}
+
+export PATCH_DIR="${GIT_LOCAL}/lineage_pixel_hardening/${android_platform}-${android_version_number}"
+echo PATCH_DIR=${PATCH_DIR}
 
 export DOS_WORKSPACE_ROOT=${GIT_LOCAL}"/DivestOS-Build"; #XXX: THIS MUST BE CORRECT TO PATCH
-[[ ${PROJECT_ROOT,,} =~ "lineage" ]] && source "${DOS_WORKSPACE_ROOT}/Scripts/init.sh" # Skip DOS scripts for GOS
+grep -q lineageos <<< "${android_platform}" && source "${DOS_WORKSPACE_ROOT}/Scripts/init.sh" # Skip DOS scripts for GOS
 
 #
 #START OF CHANGES
 #
 
-if [[ ${PROJECT_ROOT,,} =~ "lineage" ]]; then
+if grep -q lineageos .repo/manifests/default.xml; then
 #  Non-vendor patches moved to DOS fork, ones in this project are unmaintained
 #  #ROM
 #
@@ -55,7 +60,8 @@ if [[ ${PROJECT_ROOT,,} =~ "lineage" ]]; then
     fi
   done
 
-elif [[ ${PROJECT_ROOT,,} =~ "graphene" ]]; then
+elif grep -q grapheneos .repo/manifests/default.xml; then
+  echo "Patching GrapheneOS"
   #ROM
   # do this outside of DOS for now
   cd frameworks/base
@@ -72,17 +78,18 @@ elif [[ ${PROJECT_ROOT,,} =~ "graphene" ]]; then
   cd ${PROJECT_ROOT}
 
   [[ ! -f libjni_latinimegoogle.so ]] && curl -LO https://gitlab.com/MindTheGapps/vendor_gapps/-/raw/tau/arm64/proprietary/product/lib64/libjni_latinimegoogle.so
-  for vendor_device_dir in vendor/google_devices/*
-  do
-    cd "${vendor_device_dir}"
-      for patch_path in "${PATCH_DIR}"/proprietary_vendor_google_$(basename $vendor_device_dir)/*.patch
+  cd vendor/google_devices/${device}
+    if [[ ! -d .git ]]
+    then
+      for patch_path in "${PATCH_DIR}"/proprietary_vendor_google_"${device}"/*.patch
       do
         patch -p1 < "${patch_path}"
+        echo "Applied patch: ${patch_path}"
         cp -fp "${PROJECT_ROOT}"/libjni_latinimegoogle.so proprietary/product/lib64
         chmod 444 proprietary/product/lib64/libjni_latinimegoogle.so
       done
-    cd - >/dev/null
-  done
+    fi
+  cd - >/dev/null
 fi
 
 #

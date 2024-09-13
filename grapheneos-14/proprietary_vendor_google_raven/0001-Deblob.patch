@@ -1,6 +1,6 @@
-From 94796d851116bb4368d031546ed96d7b0e0d8a8e Mon Sep 17 00:00:00 2001
+From 79adfe499cbbc18ce1e3cf1f974e652729569ba7 Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Sun, 11 Aug 2024 12:48:23 -0400
+Date: Sat, 24 Aug 2024 13:11:54 -0400
 Subject: [PATCH 1/2] Deblob
 
 ---
@@ -9,7 +9,6 @@ Subject: [PATCH 1/2] Deblob
  2 files changed, 248 deletions(-)
 
 diff --git a/proprietary/Android.bp b/proprietary/Android.bp
-index 20b3f32..ce23bbb 100644
 --- a/proprietary/Android.bp
 +++ b/proprietary/Android.bp
 @@ -31,28 +31,6 @@ cc_prebuilt_library_shared {
@@ -66,7 +65,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_binary {
      name: "vendor.google.edgetpu_app_service@1.0-service",
      owner: "google_devices",
-@@ -263,18 +223,6 @@ cc_prebuilt_library_shared {
+@@ -256,18 +216,6 @@ cc_prebuilt_library_shared {
      system_ext_specific: true,
  }
  
@@ -85,7 +84,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_library_shared {
      name: "libpowerstatshaldataprovider__system_ext",
      owner: "google_devices",
-@@ -298,37 +246,6 @@ android_app_import {
+@@ -280,37 +228,6 @@ cc_prebuilt_library_shared {
      system_ext_specific: true,
  }
  
@@ -123,7 +122,7 @@ index 20b3f32..ce23bbb 100644
  android_app_import {
      name: "OemRilService",
      owner: "google_devices",
-@@ -361,47 +278,6 @@ android_app_import {
+@@ -343,47 +260,6 @@ android_app_import {
      system_ext_specific: true,
  }
  
@@ -171,7 +170,7 @@ index 20b3f32..ce23bbb 100644
  prebuilt_apex {
      name: "com.google.pixel.camera.hal",
      owner: "google_devices",
-@@ -410,22 +286,6 @@ prebuilt_apex {
+@@ -392,22 +268,6 @@ prebuilt_apex {
      soc_specific: true,
  }
  
@@ -194,7 +193,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_binary {
      name: "aocd",
      owner: "google_devices",
-@@ -487,17 +347,6 @@ cc_prebuilt_binary {
+@@ -469,17 +329,6 @@ cc_prebuilt_binary {
      soc_specific: true,
  }
  
@@ -212,7 +211,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_binary {
      name: "android.hardware.bluetooth-service.bcmbtlinux",
      owner: "google_devices",
-@@ -2463,17 +2312,6 @@ cc_prebuilt_library_shared {
+@@ -2445,17 +2294,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -230,7 +229,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_library_shared {
      name: "com.google.edgetpu_vendor_service-V2-ndk",
      owner: "google_devices",
-@@ -2509,23 +2347,6 @@ cc_prebuilt_library_shared {
+@@ -2491,23 +2329,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -254,7 +253,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_library_shared {
      name: "com.google.input-V2-ndk",
      owner: "google_devices",
-@@ -2817,32 +2638,6 @@ cc_prebuilt_library_shared {
+@@ -2799,32 +2620,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -287,7 +286,7 @@ index 20b3f32..ce23bbb 100644
  cc_prebuilt_library_shared {
      name: "libwlcproto_aidl-default",
      owner: "google_devices",
-@@ -3055,15 +2850,6 @@ prebuilt_etc_xml {
+@@ -3037,15 +2832,6 @@ prebuilt_etc_xml {
      soc_specific: true,
  }
  
@@ -304,7 +303,6 @@ index 20b3f32..ce23bbb 100644
      name: "manifest_input.processor-service",
      owner: "google_devices",
 diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
-index 7b250f8..ba1e0a7 100644
 --- a/proprietary/device-vendor.mk
 +++ b/proprietary/device-vendor.mk
 @@ -48,9 +48,6 @@ PRODUCT_PACKAGES += \
@@ -325,7 +323,7 @@ index 7b250f8..ba1e0a7 100644
      bipchmgr \
      blue \
      cbd \
-@@ -183,7 +179,6 @@ PRODUCT_PACKAGES += \
+@@ -182,7 +178,6 @@ PRODUCT_PACKAGES += \
      com.google.android.camera.experimental2022_system \
      com.google.android.camera.extensions \
      com.google.android.camerax.extensions \
@@ -333,7 +331,7 @@ index 7b250f8..ba1e0a7 100644
      com.google.edgetpu_app_service-V3-ndk \
      com.google.edgetpu_app_service-V3-ndk__system_ext \
      com.google.edgetpu_vendor_service-V2-ndk \
-@@ -194,8 +189,6 @@ PRODUCT_PACKAGES += \
+@@ -193,8 +188,6 @@ PRODUCT_PACKAGES += \
      com.google.edgetpu.tachyon-service \
      com.google.edgetpu.tachyon-service__2 \
      com.google.edgetpu.tachyon-V1-ndk \
@@ -342,7 +340,7 @@ index 7b250f8..ba1e0a7 100644
      com.google.hardware.pixel.display-V4-ndk.vendor:64 \
      com.google.hardware.pixel.display-V9-ndk.vendor \
      com.google.input-V2-ndk \
-@@ -205,17 +198,10 @@ PRODUCT_PACKAGES += \
+@@ -204,17 +197,10 @@ PRODUCT_PACKAGES += \
      com.google.pixel.camera.services.cameraidremapper \
      com.google.pixel.camera.services.lyricconfigprovider \
      com.google.pixel.camera.services@1.0-service-google \
@@ -360,7 +358,7 @@ index 7b250f8..ba1e0a7 100644
      flp.default \
      fp_utils \
      gating \
-@@ -302,7 +288,6 @@ PRODUCT_PACKAGES += \
+@@ -301,7 +287,6 @@ PRODUCT_PACKAGES += \
      libgooglerilmemmonitor \
      libgpudataproducer \
      libgril_oem-google \
@@ -368,7 +366,7 @@ index 7b250f8..ba1e0a7 100644
      libhidltransport.vendor \
      libhidparser \
      libhwbinder.vendor \
-@@ -370,13 +355,10 @@ PRODUCT_PACKAGES += \
+@@ -369,13 +354,10 @@ PRODUCT_PACKAGES += \
      libtrusty_metrics:64 \
      libunwindstack.vendor:64 \
      libusf \
@@ -382,17 +380,17 @@ index 7b250f8..ba1e0a7 100644
      modem_android_property_manager_impl.vendor:32 \
      modem_android_property_manager.vendor:32 \
      modem_clock_manager_impl.vendor \
-@@ -394,9 +376,6 @@ PRODUCT_PACKAGES += \
+@@ -392,9 +374,6 @@ PRODUCT_PACKAGES += \
+     oemrilhook \
      OemRilHookService \
      OemRilService \
-     org.carconnectivity.android.digitalkey.timesync \
 -    PersistentBackgroundCameraServices \
 -    PersistentBackgroundServices \
 -    PixelCameraServices \
      PixelNfc \
      pixelpowerstats_provider_aidl_interface-cpp.vendor:64 \
      qorvo.uwb-service \
-@@ -409,15 +388,12 @@ PRODUCT_PACKAGES += \
+@@ -407,15 +386,12 @@ PRODUCT_PACKAGES += \
      sensors.dynamic_sensor_hal \
      sensors.usf \
      ShannonIms \
@@ -408,8 +406,8 @@ index 7b250f8..ba1e0a7 100644
      vendor_chre_atoms_log \
      vendor_chre_metrics-cpp \
      vendor-pixelatoms-cpp \
-@@ -803,11 +779,6 @@ PRODUCT_COPY_FILES += \
-     vendor/google_devices/raven/proprietary/system_ext/etc/init/init.repair_mode.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.repair_mode.rc \
+@@ -800,11 +776,6 @@ PRODUCT_COPY_FILES += \
+     vendor/google_devices/raven/proprietary/product/etc/felica/mfs.cfg:$(TARGET_COPY_OUT_PRODUCT)/etc/felica/mfs.cfg \
      vendor/google_devices/raven/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
      vendor/google_devices/raven/proprietary/system_ext/etc/public.libraries-google.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-google.txt \
 -    vendor/google_devices/raven/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_DVT.in:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_DVT.in \
@@ -420,7 +418,7 @@ index 7b250f8..ba1e0a7 100644
      vendor/google_devices/raven/proprietary/vendor/etc/atc_profile.json:$(TARGET_COPY_OUT_VENDOR)/etc/atc_profile.json \
      vendor/google_devices/raven/proprietary/vendor/etc/bluetooth/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf \
      vendor/google_devices/raven/proprietary/vendor/etc/chre/activity.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/activity.napp_header \
-@@ -855,7 +826,6 @@ PRODUCT_COPY_FILES += \
+@@ -852,7 +823,6 @@ PRODUCT_COPY_FILES += \
      vendor/google_devices/raven/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
      vendor/google_devices/raven/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
      vendor/google_devices/raven/proprietary/vendor/etc/init/Exynos_C2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/Exynos_C2.rc \
@@ -428,7 +426,7 @@ index 7b250f8..ba1e0a7 100644
      vendor/google_devices/raven/proprietary/vendor/etc/init/google.hardware.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@1.0-service.rc \
      vendor/google_devices/raven/proprietary/vendor/etc/init/init_dauntless.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init_dauntless.rc \
      vendor/google_devices/raven/proprietary/vendor/etc/init/init.camera.set-interrupts-ownership.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.camera.set-interrupts-ownership.rc \
-@@ -1808,19 +1778,15 @@ PRODUCT_COPY_FILES += \
+@@ -1805,19 +1775,15 @@ PRODUCT_COPY_FILES += \
      vendor/google_devices/raven/proprietary/vendor/firmware/SensorHub.patch:$(TARGET_COPY_OUT_VENDOR)/firmware/SensorHub.patch \
      vendor/google_devices/raven/proprietary/vendor/firmware/st54j_conf.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/st54j_conf.bin \
      vendor/google_devices/raven/proprietary/vendor/firmware/st54j_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/st54j_fw.bin \
