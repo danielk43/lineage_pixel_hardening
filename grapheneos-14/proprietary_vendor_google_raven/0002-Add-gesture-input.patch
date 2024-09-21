@@ -1,7 +1,7 @@
-From 33a38f567a1d665aa19e85b1afc08f5bba46508c Mon Sep 17 00:00:00 2001
+From 693772ae314280f1e99e9ba439e5a92d55d06baf Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Mon, 26 Aug 2024 15:48:15 -0400
-Subject: [PATCH 3/3] Add gesture input
+Date: Fri, 20 Sep 2024 20:30:52 -0400
+Subject: [PATCH 2/2] Add gesture input
 
 ---
  proprietary/Android.bp       | 14 ++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 3/3] Add gesture input
 diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 --- a/proprietary/Android.bp
 +++ b/proprietary/Android.bp
-@@ -31,6 +31,20 @@ cc_prebuilt_library_shared {
+@@ -42,6 +42,20 @@ android_app_import {
      product_specific: true,
  }
  
@@ -30,19 +30,17 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 +}
 +
  android_app_import {
-     name: "PixelCameraServices",
+     name: "OemRilHookService",
      owner: "google_devices",
 diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
 --- a/proprietary/device-vendor.mk
 +++ b/proprietary/device-vendor.mk
-@@ -323,6 +323,7 @@ PRODUCT_PACKAGES += \
-     libidl \
-     libion_exynos \
-     libion.vendor \
+@@ -252,6 +252,7 @@ PRODUCT_PACKAGES += \
+     libdisplaycolor \
+     libdmengine__product \
+     libdmjavaplugin__product \
 +    libjni_latinimegoogle__product \
-     libjson \
-     libjsoncpp.vendor:32 \
-     libkeymaster4support.vendor:64 \
--- 
-2.39.2
+     libedgetpu_client.google \
+     libedgetpu_dba.google__system_ext \
+     libedgetpu_tachyon.google__system_ext \
 
