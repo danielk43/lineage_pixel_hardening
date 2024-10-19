@@ -79,14 +79,14 @@ elif grep -q grapheneos .repo/manifests/default.xml; then
 
   [[ ! -f libjni_latinimegoogle.so ]] && curl -LO https://gitlab.com/MindTheGapps/vendor_gapps/-/raw/tau/arm64/proprietary/product/lib64/libjni_latinimegoogle.so
   cd vendor/google_devices/${device}
+  cp -fp "${PROJECT_ROOT}"/libjni_latinimegoogle.so proprietary/product/lib64
+  chmod 444 proprietary/product/lib64/libjni_latinimegoogle.so
     if [[ ! -d .git ]]
     then
       for patch_path in "${PATCH_DIR}"/proprietary_vendor_google_"${device}"/*.patch
       do
         patch -p1 < "${patch_path}"
         echo "Applied patch: ${patch_path}"
-        cp -fp "${PROJECT_ROOT}"/libjni_latinimegoogle.so proprietary/product/lib64
-        chmod 444 proprietary/product/lib64/libjni_latinimegoogle.so
       done
     fi
   cd - >/dev/null
