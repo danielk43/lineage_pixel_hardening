@@ -1,6 +1,6 @@
-From a088b9a19838f9c7222b357f46c09e802a304f7e Mon Sep 17 00:00:00 2001
+From 6c0623bb201887e46ee7c18bf484ababc3382f19 Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Sun, 29 Oct 2023 13:46:09 -0400
+Date: Fri, 18 Oct 2024 22:09:30 -0400
 Subject: [PATCH] Update dns references
 
 ---
@@ -9,39 +9,39 @@ Subject: [PATCH] Update dns references
  .../android/net/EthernetTetheringTest.java    |  2 +-
  .../mts/MtsEthernetTetheringTest.java         |  2 +-
  .../unit/src/android/net/ip/IpServerTest.java |  2 +-
- .../tethering/BpfCoordinatorTest.java         | 12 +++++------
+ .../tethering/BpfCoordinatorTest.java         | 12 +++++-----
  .../IPv6TetheringCoordinatorTest.java         |  2 +-
  clatd/clatd_test.cpp                          |  4 ++--
  framework/src/android/net/util/DnsUtils.java  |  4 ++--
  .../res/values/config.xml                     |  2 +-
- .../native/libs/libclat/clatutils_test.cpp    |  6 +++---
+ .../native/libs/libclat/clatutils_test.cpp    |  6 ++---
  .../server/connectivity/ClatCoordinator.java  |  4 ++--
  .../connectivity/NetworkDiagnostics.java      |  4 ++--
- .../libnetdutils/InternetAddressesTest.cpp    | 10 +++++-----
- .../util/netlink/InetDiagSocketTest.java      | 10 +++++-----
+ .../libnetdutils/InternetAddressesTest.cpp    | 10 ++++----
+ .../util/netlink/InetDiagSocketTest.java      | 10 ++++----
  .../netlink/RtNetlinkLinkMessageTest.java     |  2 +-
- .../testutils/PacketForwarderBase.java        |  8 ++++----
- .../common/java/android/net/IpPrefixTest.java |  8 ++++----
- .../java/android/net/LinkPropertiesTest.java  |  8 ++++----
- .../java/android/net/RouteInfoTest.java       |  6 +++---
- tests/cts/net/jni/NativeDnsJni.c              |  6 +++---
+ .../testutils/PacketForwarderBase.java        |  8 +++----
+ .../common/java/android/net/IpPrefixTest.java |  8 +++----
+ .../java/android/net/LinkPropertiesTest.java  |  8 +++----
+ .../java/android/net/RouteInfoTest.java       |  6 ++---
+ tests/cts/net/jni/NativeDnsJni.c              |  6 ++---
+ .../src/android/net/cts/ApfIntegrationTest.kt |  2 +-
  .../net/src/android/net/cts/DscpPolicyTest.kt |  2 +-
  .../android/net/cts/IpConfigurationTest.java  |  4 ++--
- .../src/android/net/cts/IpSecManagerTest.java |  4 ++--
+ .../src/android/net/cts/IpSecManagerTest.java | 12 +++++-----
  .../src/android/net/cts/RateLimitTest.java    |  2 +-
- .../net/cts/StaticIpConfigurationTest.java    |  6 +++---
+ .../net/cts/StaticIpConfigurationTest.java    |  6 ++---
  .../src/android/net/cts/VpnServiceTest.java   |  2 +-
  .../NetworkStatsIntegrationTest.kt            |  4 ++--
- .../java/android/net/IpSecManagerTest.java    |  4 ++--
- .../android/internal/net/VpnProfileTest.java  |  4 ++--
- .../server/ConnectivityServiceTest.java       | 20 +++++++++----------
+ .../java/android/net/IpSecManagerTest.java    | 24 +++++++++----------
+ .../server/ConnectivityServiceTest.java       | 18 +++++++-------
  .../server/IpSecServiceParameterizedTest.java |  4 ++--
  .../AutomaticOnOffKeepaliveTrackerTest.java   |  2 +-
- .../connectivity/ClatCoordinatorTest.java     |  2 +-
- .../server/connectivity/DnsManagerTest.java   | 14 ++++++-------
+ .../connectivity/ClatCoordinatorTest.java     |  6 ++---
+ .../server/connectivity/DnsManagerTest.java   | 14 +++++------
  .../ethernet/EthernetConfigStoreTest.java     |  4 ++--
- .../server/ethernet/EthernetTrackerTest.java  | 10 +++++-----
- 37 files changed, 98 insertions(+), 98 deletions(-)
+ .../server/ethernet/EthernetTrackerTest.java  | 10 ++++----
+ 37 files changed, 112 insertions(+), 112 deletions(-)
 
 diff --git a/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java b/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java
 --- a/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java
@@ -58,7 +58,7 @@ diff --git a/Tethering/src/com/android/networkstack/tethering/TetheringConfigura
 diff --git a/Tethering/tests/integration/base/android/net/EthernetTetheringTestBase.java b/Tethering/tests/integration/base/android/net/EthernetTetheringTestBase.java
 --- a/Tethering/tests/integration/base/android/net/EthernetTetheringTestBase.java
 +++ b/Tethering/tests/integration/base/android/net/EthernetTetheringTestBase.java
-@@ -112,11 +112,11 @@ public abstract class EthernetTetheringTestBase {
+@@ -113,11 +113,11 @@ public abstract class EthernetTetheringTestBase {
      protected static final MacAddress TEST_MAC = MacAddress.fromString("1:2:3:4:5:6");
      protected static final LinkAddress TEST_IP4_ADDR = new LinkAddress("10.0.0.1/24");
      protected static final LinkAddress TEST_IP6_ADDR = new LinkAddress("2001:db8:1::101/64");
@@ -75,7 +75,7 @@ diff --git a/Tethering/tests/integration/base/android/net/EthernetTetheringTestB
 diff --git a/Tethering/tests/integration/src/android/net/EthernetTetheringTest.java b/Tethering/tests/integration/src/android/net/EthernetTetheringTest.java
 --- a/Tethering/tests/integration/src/android/net/EthernetTetheringTest.java
 +++ b/Tethering/tests/integration/src/android/net/EthernetTetheringTest.java
-@@ -487,7 +487,7 @@ public class EthernetTetheringTest extends EthernetTetheringTestBase {
+@@ -517,7 +517,7 @@ public class EthernetTetheringTest extends EthernetTetheringTestBase {
      // |   Sever    +---------+  Upstream  | Downstream +---------+   Client   |
      // +------------+         +------------+------------+         +------------+
      // remote ip              public ip                           private ip
@@ -238,7 +238,7 @@ diff --git a/service/native/libs/libclat/clatutils_test.cpp b/service/native/lib
 diff --git a/service/src/com/android/server/connectivity/ClatCoordinator.java b/service/src/com/android/server/connectivity/ClatCoordinator.java
 --- a/service/src/com/android/server/connectivity/ClatCoordinator.java
 +++ b/service/src/com/android/server/connectivity/ClatCoordinator.java
-@@ -89,7 +89,7 @@ public class ClatCoordinator {
+@@ -91,7 +91,7 @@ public class ClatCoordinator {
      static final String INIT_V4ADDR_STRING = "192.0.0.4";
      @VisibleForTesting
      static final int INIT_V4ADDR_PREFIX_LEN = 29;
@@ -247,15 +247,15 @@ diff --git a/service/src/com/android/server/connectivity/ClatCoordinator.java b/
  
      private static final int INVALID_IFINDEX = 0;
  
-@@ -667,7 +667,7 @@ public class ClatCoordinator {
-         final int detectedMtu;
-         try {
-             detectedMtu = mDeps.detectMtu(pfx96Str,
--                ByteBuffer.wrap(CLOUDFLARE_DNS_4.getAddress()).getInt(), fwmark);
-+                ByteBuffer.wrap(QUADNINE_DNS_4.getAddress()).getInt(), fwmark);
-         } catch (IOException e) {
-             maybeCleanUp(tunFd, readSock6, writeSock6);
-             throw new IOException("Detect MTU on " + tunIface + " failed: " + e);
+@@ -645,7 +645,7 @@ public class ClatCoordinator {
+             mNetd.interfaceSetEnableIPv6(tunIface, false /* enabled */);
+             // Detect ipv4 mtu.
+             final int detectedMtu = mDeps.detectMtu(pfx96Str,
+-                    ByteBuffer.wrap(CLOUDFLARE_DNS_4.getAddress()).getInt(), fwmark);
++                    ByteBuffer.wrap(QUADNINE_DNS_4.getAddress()).getInt(), fwmark);
+             final int mtu = adjustMtu(detectedMtu);
+             Log.i(TAG, "detected ipv4 mtu of " + detectedMtu + " adjusted to " + mtu);
+             // Config tun interface mtu, address and bring up.
 diff --git a/service/src/com/android/server/connectivity/NetworkDiagnostics.java b/service/src/com/android/server/connectivity/NetworkDiagnostics.java
 --- a/service/src/com/android/server/connectivity/NetworkDiagnostics.java
 +++ b/service/src/com/android/server/connectivity/NetworkDiagnostics.java
@@ -311,7 +311,7 @@ diff --git a/staticlibs/tests/unit/src/com/android/net/module/util/netlink/InetD
              "b971" +         // idiag_dport = 47473
              "0a006402000000000000000000000000" + // idiag_src = 10.0.100.2
 -            "08080808000000000000000000000000" + // idiag_dst = 8.8.8.8
-+            "09.9.9.9000000000000000000000000" + // idiag_dst = 9.9.9.9
++            "09090909000000000000000000000000" + // idiag_dst = 9.9.9.9
              "00000000" +     // idiag_if
              "ffffffffffffffff"; // idiag_cookie = INET_DIAG_NOCOOKIE
      private static final byte[] INET_DIAG_REQ_V2_UDP_INET4_BYTES =
@@ -460,6 +460,18 @@ diff --git a/tests/cts/net/jni/NativeDnsJni.c b/tests/cts/net/jni/NativeDnsJni.c
  const char *GoogleDNSIpV6Address2="2001:4860:4860::8844";
  
  JNIEXPORT jboolean Java_android_net_cts_DnsTest_testNativeDns(JNIEnv* env, jclass class)
+diff --git a/tests/cts/net/src/android/net/cts/ApfIntegrationTest.kt b/tests/cts/net/src/android/net/cts/ApfIntegrationTest.kt
+--- a/tests/cts/net/src/android/net/cts/ApfIntegrationTest.kt
++++ b/tests/cts/net/src/android/net/cts/ApfIntegrationTest.kt
+@@ -105,7 +105,7 @@ private const val PING_HEADER_LENGTH = 8
+ @kotlin.ExperimentalStdlibApi
+ class ApfIntegrationTest {
+     companion object {
+-        private val PING_DESTINATION = InetSocketAddress("2001:4860:4860::8888", 0)
++        private val PING_DESTINATION = InetSocketAddress("2620:fe::fe", 0)
+ 
+         private val context = InstrumentationRegistry.getInstrumentation().context
+         private val powerManager = context.getSystemService(PowerManager::class.java)!!
 diff --git a/tests/cts/net/src/android/net/cts/DscpPolicyTest.kt b/tests/cts/net/src/android/net/cts/DscpPolicyTest.kt
 --- a/tests/cts/net/src/android/net/cts/DscpPolicyTest.kt
 +++ b/tests/cts/net/src/android/net/cts/DscpPolicyTest.kt
@@ -489,18 +501,33 @@ diff --git a/tests/cts/net/src/android/net/cts/IpConfigurationTest.java b/tests/
 diff --git a/tests/cts/net/src/android/net/cts/IpSecManagerTest.java b/tests/cts/net/src/android/net/cts/IpSecManagerTest.java
 --- a/tests/cts/net/src/android/net/cts/IpSecManagerTest.java
 +++ b/tests/cts/net/src/android/net/cts/IpSecManagerTest.java
-@@ -106,9 +106,9 @@ public class IpSecManagerTest extends IpSecBaseTest {
+@@ -115,12 +115,12 @@ public class IpSecManagerTest extends IpSecBaseTest {
  
      private static final String TAG = IpSecManagerTest.class.getSimpleName();
  
 -    private static final InetAddress GOOGLE_DNS_4 = InetAddress.parseNumericAddress("8.8.8.8");
-+    private static final InetAddress GOOGLE_DNS_4 = InetAddress.parseNumericAddress("9.9.9.9");
-     private static final InetAddress GOOGLE_DNS_6 =
+-    private static final InetAddress GOOGLE_DNS_6 =
 -            InetAddress.parseNumericAddress("2001:4860:4860::8888");
++    private static final InetAddress QUAD9_DNS_4 = InetAddress.parseNumericAddress("9.9.9.9");
++    private static final InetAddress QUAD9_DNS_6 =
 +            InetAddress.parseNumericAddress("2620:fe::fe");
  
-     private static final InetAddress[] GOOGLE_DNS_LIST =
-             new InetAddress[] {GOOGLE_DNS_4, GOOGLE_DNS_6};
+-    private static final InetAddress[] GOOGLE_DNS_LIST =
+-            new InetAddress[] {GOOGLE_DNS_4, GOOGLE_DNS_6};
++    private static final InetAddress[] QUAD9_DNS_LIST =
++            new InetAddress[] {QUAD9_DNS_4, QUAD9_DNS_6};
+ 
+     private static final int DROID_SPI = 0xD1201D;
+     private static final int MAX_PORT_BIND_ATTEMPTS = 10;
+@@ -135,7 +135,7 @@ public class IpSecManagerTest extends IpSecBaseTest {
+      */
+     @Test
+     public void testAllocSpi() throws Exception {
+-        for (InetAddress addr : GOOGLE_DNS_LIST) {
++        for (InetAddress addr : QUAD9_DNS_LIST) {
+             SecurityParameterIndex randomSpi, droidSpi;
+             randomSpi = mISM.allocateSecurityParameterIndex(addr);
+             assertTrue(
 diff --git a/tests/cts/net/src/android/net/cts/RateLimitTest.java b/tests/cts/net/src/android/net/cts/RateLimitTest.java
 --- a/tests/cts/net/src/android/net/cts/RateLimitTest.java
 +++ b/tests/cts/net/src/android/net/cts/RateLimitTest.java
@@ -544,7 +571,7 @@ diff --git a/tests/cts/net/src/android/net/cts/VpnServiceTest.java b/tests/cts/n
 diff --git a/tests/integration/src/com/android/server/net/integrationtests/NetworkStatsIntegrationTest.kt b/tests/integration/src/com/android/server/net/integrationtests/NetworkStatsIntegrationTest.kt
 --- a/tests/integration/src/com/android/server/net/integrationtests/NetworkStatsIntegrationTest.kt
 +++ b/tests/integration/src/com/android/server/net/integrationtests/NetworkStatsIntegrationTest.kt
-@@ -78,9 +78,9 @@ class NetworkStatsIntegrationTest {
+@@ -79,9 +79,9 @@ class NetworkStatsIntegrationTest {
      // Remote address, both the client and server will have a hallucination that
      // they are talking to this address.
      private val REMOTE_V6ADDR =
@@ -559,42 +586,104 @@ diff --git a/tests/integration/src/com/android/server/net/integrationtests/Netwo
 diff --git a/tests/unit/java/android/net/IpSecManagerTest.java b/tests/unit/java/android/net/IpSecManagerTest.java
 --- a/tests/unit/java/android/net/IpSecManagerTest.java
 +++ b/tests/unit/java/android/net/IpSecManagerTest.java
+@@ -59,7 +59,7 @@ public class IpSecManagerTest {
+     private static final int DROID_SPI = 0xD1201D;
+     private static final int DUMMY_RESOURCE_ID = 0x1234;
+ 
+-    private static final InetAddress GOOGLE_DNS_4;
++    private static final InetAddress QUAD9_DNS_4;
+     private static final String VTI_INTF_NAME = "ipsec_test";
+     private static final InetAddress VTI_LOCAL_ADDRESS;
+     private static final LinkAddress VTI_INNER_ADDRESS = new LinkAddress("10.0.1.1/24");
 @@ -67,8 +67,8 @@ public class IpSecManagerTest {
      static {
          try {
              // Google Public DNS Addresses;
 -            GOOGLE_DNS_4 = InetAddress.getByName("8.8.8.8");
 -            VTI_LOCAL_ADDRESS = InetAddress.getByName("8.8.4.4");
-+            GOOGLE_DNS_4 = InetAddress.getByName("9.9.9.9");
++            QUAD9_DNS_4 = InetAddress.getByName("9.9.9.9");
 +            VTI_LOCAL_ADDRESS = InetAddress.getByName("149.112.112.112");
          } catch (UnknownHostException e) {
              throw new RuntimeException("Could not resolve DNS Addresses", e);
          }
-diff --git a/tests/unit/java/com/android/internal/net/VpnProfileTest.java b/tests/unit/java/com/android/internal/net/VpnProfileTest.java
---- a/tests/unit/java/com/android/internal/net/VpnProfileTest.java
-+++ b/tests/unit/java/com/android/internal/net/VpnProfileTest.java
-@@ -105,7 +105,7 @@ public class VpnProfileTest {
-         p.server = "bar";
-         p.username = "baz";
-         p.password = "qux";
--        p.dnsServers = "8.8.8.8";
-+        p.dnsServers = "9.9.9.9";
-         p.searchDomains = "";
-         p.routes = "0.0.0.0/0";
-         p.mppe = false;
-@@ -142,7 +142,7 @@ public class VpnProfileTest {
+@@ -98,13 +98,13 @@ public class IpSecManagerTest {
+         IpSecSpiResponse spiResp =
+                 new IpSecSpiResponse(IpSecManager.Status.OK, DUMMY_RESOURCE_ID, DROID_SPI);
+         when(mMockIpSecService.allocateSecurityParameterIndex(
+-                        eq(GOOGLE_DNS_4.getHostAddress()),
++                        eq(QUAD9_DNS_4.getHostAddress()),
+                         eq(DROID_SPI),
+                         anyObject()))
+                 .thenReturn(spiResp);
  
-         p.name = "foo";
-         p.server = "bar";
--        p.dnsServers = "8.8.8.8";
-+        p.dnsServers = "9.9.9.9";
-         p.searchDomains = "";
-         p.routes = "0.0.0.0/0";
-         p.mppe = false;
+         IpSecManager.SecurityParameterIndex droidSpi =
+-                mIpSecManager.allocateSecurityParameterIndex(GOOGLE_DNS_4, DROID_SPI);
++                mIpSecManager.allocateSecurityParameterIndex(QUAD9_DNS_4, DROID_SPI);
+         assertEquals(DROID_SPI, droidSpi.getSpi());
+ 
+         droidSpi.close();
+@@ -117,13 +117,13 @@ public class IpSecManagerTest {
+         IpSecSpiResponse spiResp =
+                 new IpSecSpiResponse(IpSecManager.Status.OK, DUMMY_RESOURCE_ID, DROID_SPI);
+         when(mMockIpSecService.allocateSecurityParameterIndex(
+-                        eq(GOOGLE_DNS_4.getHostAddress()),
++                        eq(QUAD9_DNS_4.getHostAddress()),
+                         eq(IpSecManager.INVALID_SECURITY_PARAMETER_INDEX),
+                         anyObject()))
+                 .thenReturn(spiResp);
+ 
+         IpSecManager.SecurityParameterIndex randomSpi =
+-                mIpSecManager.allocateSecurityParameterIndex(GOOGLE_DNS_4);
++                mIpSecManager.allocateSecurityParameterIndex(QUAD9_DNS_4);
+ 
+         assertEquals(DROID_SPI, randomSpi.getSpi());
+ 
+@@ -144,7 +144,7 @@ public class IpSecManagerTest {
+                 .thenReturn(spiResp);
+ 
+         try {
+-            mIpSecManager.allocateSecurityParameterIndex(GOOGLE_DNS_4);
++            mIpSecManager.allocateSecurityParameterIndex(QUAD9_DNS_4);
+             fail("ResourceUnavailableException was not thrown");
+         } catch (IpSecManager.ResourceUnavailableException e) {
+         }
+@@ -161,7 +161,7 @@ public class IpSecManagerTest {
+                 .thenReturn(spiResp);
+ 
+         try {
+-            mIpSecManager.allocateSecurityParameterIndex(GOOGLE_DNS_4);
++            mIpSecManager.allocateSecurityParameterIndex(QUAD9_DNS_4);
+             fail("ResourceUnavailableException was not thrown");
+         } catch (IpSecManager.ResourceUnavailableException e) {
+         }
+@@ -173,7 +173,7 @@ public class IpSecManagerTest {
+     @Test
+     public void testRequestAllocInvalidSpi() throws Exception {
+         try {
+-            mIpSecManager.allocateSecurityParameterIndex(GOOGLE_DNS_4, 0);
++            mIpSecManager.allocateSecurityParameterIndex(QUAD9_DNS_4, 0);
+             fail("Able to allocate invalid spi");
+         } catch (IllegalArgumentException e) {
+         }
+@@ -266,12 +266,12 @@ public class IpSecManagerTest {
+         IpSecTunnelInterfaceResponse dummyResponse =
+                 new IpSecTunnelInterfaceResponse(IpSecManager.Status.OK, resourceId, intfName);
+         when(mMockIpSecService.createTunnelInterface(
+-                eq(VTI_LOCAL_ADDRESS.getHostAddress()), eq(GOOGLE_DNS_4.getHostAddress()),
++                eq(VTI_LOCAL_ADDRESS.getHostAddress()), eq(QUAD9_DNS_4.getHostAddress()),
+                 anyObject(), anyObject(), anyString()))
+                         .thenReturn(dummyResponse);
+ 
+         IpSecManager.IpSecTunnelInterface tunnelIntf = mIpSecManager.createIpSecTunnelInterface(
+-                VTI_LOCAL_ADDRESS, GOOGLE_DNS_4, mock(Network.class));
++                VTI_LOCAL_ADDRESS, QUAD9_DNS_4, mock(Network.class));
+ 
+         assertNotNull(tunnelIntf);
+         return tunnelIntf;
 diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/tests/unit/java/com/android/server/ConnectivityServiceTest.java
 --- a/tests/unit/java/com/android/server/ConnectivityServiceTest.java
 +++ b/tests/unit/java/com/android/server/ConnectivityServiceTest.java
-@@ -6966,8 +6966,8 @@ public class ConnectivityServiceTest {
+@@ -6984,8 +6984,8 @@ public class ConnectivityServiceTest {
          final InetAddress myIPv4 = v4Addr.getAddress();
          InetAddress notMyIPv4 = InetAddress.getByName("192.0.2.35");
          InetAddress myIPv6 = InetAddress.getByName("2001:db8::1");
@@ -605,7 +694,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
          doReturn(getClatInterfaceConfigParcel(v4Addr)).when(mMockNetd)
                  .interfaceGetCfg(CLAT_MOBILE_IFNAME);
          final int validKaInterval = 15;
-@@ -7098,8 +7098,8 @@ public class ConnectivityServiceTest {
+@@ -7116,8 +7116,8 @@ public class ConnectivityServiceTest {
          final InetAddress myIPv4 = InetAddress.getByName("192.0.2.129");
          final InetAddress notMyIPv4 = InetAddress.getByName("192.0.2.35");
          final InetAddress myIPv6 = InetAddress.getByName("2001:db8::1");
@@ -616,7 +705,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
  
          final int validKaInterval = 15;
          final int invalidKaInterval = 9;
-@@ -7360,7 +7360,7 @@ public class ConnectivityServiceTest {
+@@ -7378,7 +7378,7 @@ public class ConnectivityServiceTest {
      private void doTestNattSocketKeepalivesFdWithExecutor(Executor executor) throws Exception {
          final InetAddress myIPv4 = InetAddress.getByName("192.0.2.129");
          final InetAddress anyIPv4 = InetAddress.getByName("0.0.0.0");
@@ -625,7 +714,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
          final int validKaInterval = 15;
  
          // Prepare the target network.
-@@ -7903,7 +7903,7 @@ public class ConnectivityServiceTest {
+@@ -7921,7 +7921,7 @@ public class ConnectivityServiceTest {
          cellLp.addLinkAddress(new LinkAddress("192.0.2.4/24"));
          cellLp.addRoute(new RouteInfo((IpPrefix) null, InetAddress.getByName("192.0.2.4"),
                  MOBILE_IFNAME));
@@ -634,16 +723,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
          mCellAgent.sendLinkProperties(cellLp);
          verifyNoMoreInteractions(mStatsManager);
          reset(mStatsManager);
-@@ -10221,7 +10221,7 @@ public class ConnectivityServiceTest {
-         final VpnProfile profile = new VpnProfile(profileName);
-         profile.name = "My VPN";
-         profile.server = "192.0.2.1";
--        profile.dnsServers = "8.8.8.8";
-+        profile.dnsServers = "9.9.9.9";
-         profile.ipsecIdentifier = "My ipsecIdentifier";
-         profile.ipsecSecret = "My PSK";
-         profile.type = profileType;
-@@ -10945,7 +10945,7 @@ public class ConnectivityServiceTest {
+@@ -10981,7 +10981,7 @@ public class ConnectivityServiceTest {
          assertRoutesAdded(cellNetId, stackedDefault);
          verify(mMockNetd, times(1)).networkAddInterface(cellNetId, CLAT_MOBILE_IFNAME);
          // Change trivial linkproperties and see if stacked link is preserved.
@@ -652,7 +732,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
          mCellAgent.sendLinkProperties(cellLp);
          networkCallback.expect(LINK_PROPERTIES_CHANGED, mCellAgent);
  
-@@ -10958,7 +10958,7 @@ public class ConnectivityServiceTest {
+@@ -10994,7 +10994,7 @@ public class ConnectivityServiceTest {
                  mResolverParamsParcelCaptor.capture());
          ResolverParamsParcel resolvrParams = mResolverParamsParcelCaptor.getValue();
          assertEquals(1, resolvrParams.servers.length);
@@ -661,7 +741,7 @@ diff --git a/tests/unit/java/com/android/server/ConnectivityServiceTest.java b/t
  
          for (final LinkProperties stackedLp : stackedLpsAfterChange) {
              assertNotNull(readHead.poll(TIMEOUT_MS, ri -> ri.contentEquals(mServiceContext,
-@@ -11037,7 +11037,7 @@ public class ConnectivityServiceTest {
+@@ -11073,7 +11073,7 @@ public class ConnectivityServiceTest {
          // Remove IPv4 address and expect prefix discovery and clatd to be started again.
          cellLp.removeLinkAddress(myIpv4);
          cellLp.removeRoute(new RouteInfo(myIpv4, null, MOBILE_IFNAME));
@@ -692,26 +772,44 @@ diff --git a/tests/unit/java/com/android/server/connectivity/AutomaticOnOffKeepa
              + "71B9"            // idiag_dport = 47473
              + "0a006402000000000000000000000000" // idiag_src = 10.0.100.2
 -            + "08080808000000000000000000000000" // idiag_dst = 8.8.8.8
-+            + "08080808000000000000000000000000" // idiag_dst = 9.9.9.9
++            + "09090909000000000000000000000000" // idiag_dst = 9.9.9.9
              + "00000000"            // idiag_if
              + "34ED000076270000"    // idiag_cookie = 43387759684916
              + "00000000"            // idiag_expires
 diff --git a/tests/unit/java/com/android/server/connectivity/ClatCoordinatorTest.java b/tests/unit/java/com/android/server/connectivity/ClatCoordinatorTest.java
 --- a/tests/unit/java/com/android/server/connectivity/ClatCoordinatorTest.java
 +++ b/tests/unit/java/com/android/server/connectivity/ClatCoordinatorTest.java
-@@ -91,7 +91,7 @@ public class ClatCoordinatorTest {
+@@ -92,7 +92,7 @@ public class ClatCoordinatorTest {
      private static final String NAT64_PREFIX_STRING = "64:ff9b::";
      private static final Inet6Address INET6_PFX96 = (Inet6Address)
              InetAddresses.parseNumericAddress(NAT64_PREFIX_STRING);
 -    private static final int GOOGLE_DNS_4 = 0x08080808;  // 8.8.8.8
-+    private static final int GOOGLE_DNS_4 = 0x08080808;  // 9.9.9.9
++    private static final int QUAD9_DNS_4 = 0x09090909;  // 9.9.9.9
      private static final int NETID = 42;
  
      // The test fwmark means: PERMISSION_NETWORK | PERMISSION_SYSTEM (0x3), protectedFromVpn: true,
+@@ -236,7 +236,7 @@ public class ClatCoordinatorTest {
+         @Override
+         public int detectMtu(@NonNull String platSubnet, int platSuffix, int mark)
+                 throws IOException {
+-            if (NAT64_PREFIX_STRING.equals(platSubnet) && GOOGLE_DNS_4 == platSuffix
++            if (NAT64_PREFIX_STRING.equals(platSubnet) && QUAD9_DNS_4 == platSuffix
+                     && MARK == mark) {
+                 return ETHER_MTU;
+             }
+@@ -440,7 +440,7 @@ public class ClatCoordinatorTest {
+         inOrder.verify(mDeps).adoptFd(eq(TUN_FD));
+         inOrder.verify(mDeps).getInterfaceIndex(eq(STACKED_IFACE));
+         inOrder.verify(mNetd).interfaceSetEnableIPv6(eq(STACKED_IFACE), eq(false /* enable */));
+-        inOrder.verify(mDeps).detectMtu(eq(NAT64_PREFIX_STRING), eq(GOOGLE_DNS_4), eq(MARK));
++        inOrder.verify(mDeps).detectMtu(eq(NAT64_PREFIX_STRING), eq(QUAD9_DNS_4), eq(MARK));
+         inOrder.verify(mNetd).interfaceSetMtu(eq(STACKED_IFACE),
+                 eq(1472 /* ETHER_MTU(1500) - MTU_DELTA(28) */));
+         inOrder.verify(mNetd).interfaceSetCfg(argThat(cfg ->
 diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java b/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
 --- a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
 +++ b/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
-@@ -169,7 +169,7 @@ public class DnsManagerTest {
+@@ -143,7 +143,7 @@ public class DnsManagerTest {
          LinkProperties lp = new LinkProperties();
          lp.setInterfaceName(TEST_IFACENAME);
          lp.addDnsServer(InetAddress.getByName("3.3.3.3"));
@@ -720,7 +818,7 @@ diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
  
          // Send a validation event that is tracked on the alternate netId
          final NetworkCapabilities nc = new NetworkCapabilities();
-@@ -182,7 +182,7 @@ public class DnsManagerTest {
+@@ -156,7 +156,7 @@ public class DnsManagerTest {
          mDnsManager.flushVmDnsCache();
          mDnsManager.updatePrivateDnsValidation(
                  new DnsManager.PrivateDnsValidationUpdate(TEST_NETID_ALTERNATE,
@@ -729,7 +827,7 @@ diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
                          VALIDATION_RESULT_SUCCESS));
          LinkProperties fixedLp = new LinkProperties(lp);
          mDnsManager.updatePrivateDnsStatus(TEST_NETID, fixedLp);
-@@ -192,7 +192,7 @@ public class DnsManagerTest {
+@@ -166,7 +166,7 @@ public class DnsManagerTest {
          mDnsManager.updatePrivateDnsStatus(TEST_NETID_ALTERNATE, fixedLp);
          assertTrue(fixedLp.isPrivateDnsActive());
          assertNull(fixedLp.getPrivateDnsServerName());
@@ -738,7 +836,7 @@ diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
                  fixedLp.getValidatedPrivateDnsServers());
  
          // Set up addresses for strict mode and switch to it.
-@@ -277,7 +277,7 @@ public class DnsManagerTest {
+@@ -251,7 +251,7 @@ public class DnsManagerTest {
          // Validation event has untracked ipAddress
          mDnsManager.updatePrivateDnsValidation(
                  new DnsManager.PrivateDnsValidationUpdate(TEST_NETID,
@@ -747,7 +845,7 @@ diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
                          VALIDATION_RESULT_SUCCESS));
          mDnsManager.updatePrivateDnsStatus(TEST_NETID, lp);
          assertFalse(lp.isPrivateDnsActive());
-@@ -358,7 +358,7 @@ public class DnsManagerTest {
+@@ -332,7 +332,7 @@ public class DnsManagerTest {
          final LinkProperties lp = new LinkProperties();
          lp.setInterfaceName(TEST_IFACENAME);
          lp.addDnsServer(InetAddress.getByName("3.3.3.3"));
@@ -756,7 +854,7 @@ diff --git a/tests/unit/java/com/android/server/connectivity/DnsManagerTest.java
          final NetworkCapabilities nc = new NetworkCapabilities();
          nc.setTransportTypes(TEST_TRANSPORT_TYPES);
          mDnsManager.updateCapabilitiesForNetwork(TEST_NETID, nc);
-@@ -376,10 +376,10 @@ public class DnsManagerTest {
+@@ -345,10 +345,10 @@ public class DnsManagerTest {
          expectedParams.successThreshold = TEST_DEFAULT_SUCCESS_THRESHOLD_PERCENT;
          expectedParams.minSamples = TEST_DEFAULT_MIN_SAMPLES;
          expectedParams.maxSamples = TEST_DEFAULT_MAX_SAMPLES;
@@ -823,6 +921,4 @@ diff --git a/tests/unit/java/com/android/server/ethernet/EthernetTrackerTest.jav
          assertStaticConfigurationFails("=");  // Key and value is empty
          assertStaticConfigurationFails("ip=");  // Value is empty
          assertStaticConfigurationFails("ip=192.0.2.1/24 gateway=");  // Gateway is empty
--- 
-2.39.2
 
