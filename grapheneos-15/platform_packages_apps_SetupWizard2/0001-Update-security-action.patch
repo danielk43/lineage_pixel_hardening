@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: danielk43 <11856117+danielk43@users.noreply.github.com>
+Date: Sun, 27 Oct 2024 10:24:58 -0400
+Subject: [PATCH] Update security action
+
+---
+ java/app/grapheneos/setupwizard/action/SecurityActions.kt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/java/app/grapheneos/setupwizard/action/SecurityActions.kt b/java/app/grapheneos/setupwizard/action/SecurityActions.kt
+--- a/java/app/grapheneos/setupwizard/action/SecurityActions.kt
++++ b/java/app/grapheneos/setupwizard/action/SecurityActions.kt
+@@ -10,14 +10,13 @@ import app.grapheneos.setupwizard.view.activity.SetupWizardActivity
+ object SecurityActions {
+     private const val TAG = "SecurityActions"
+     private const val ACTION_SETUP_LOCK_SCREEN = "com.android.settings.SETUP_LOCK_SCREEN"
+-    private const val ACTION_SETUP_BIOMETRIC = "android.settings.BIOMETRIC_ENROLL"
+ 
+     init {
+         refreshSecurityStatus()
+     }
+ 
+     fun launchSetup(context: SetupWizardActivity) {
+-        val intent = Intent(ACTION_SETUP_BIOMETRIC)
++        val intent = Intent(ACTION_SETUP_LOCK_SCREEN)
+         SetupWizard.startActivityForResult(context, intent)
+     }
+

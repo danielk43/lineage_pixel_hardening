@@ -77,6 +77,10 @@ elif grep -q grapheneos .repo/manifests/default.xml; then
   git am ${PATCH_DIR}/platform_packages_modules_Connectivity/0001-Update-dns-references.patch
   cd ${PROJECT_ROOT}
 
+  cd packages/apps/SetupWizard2
+  git am ${PATCH_DIR}/platform_packages_apps_SetupWizard2/0001-Update-security-action.patch
+  cd ${PROJECT_ROOT}
+
   [[ ! -f libjni_latinimegoogle.so ]] && curl -LO https://gitlab.com/MindTheGapps/vendor_gapps/-/raw/tau/arm64/proprietary/product/lib64/libjni_latinimegoogle.so
   cd vendor/google_devices/${device}
   cp -fp "${PROJECT_ROOT}"/libjni_latinimegoogle.so proprietary/product/lib64
