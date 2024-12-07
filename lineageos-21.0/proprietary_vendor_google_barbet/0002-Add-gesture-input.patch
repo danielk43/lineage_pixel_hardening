@@ -1,0 +1,49 @@
+From 7313db02979867208959cfd94935eb369f26942c Mon Sep 17 00:00:00 2001
+From: danielk43 <11856117+danielk43@users.noreply.github.com>
+Date: Sat, 7 Dec 2024 13:17:39 -0500
+Subject: [PATCH 2/2] Add gesture input
+
+Change-Id: Ib6b4d4679d121cc78606324218fd2203d18b432f
+---
+ Android.bp       | 16 ++++++++++++++++
+ barbet-vendor.mk |  1 +
+ 2 files changed, 17 insertions(+)
+
+diff --git a/Android.bp b/Android.bp
+--- a/Android.bp
++++ b/Android.bp
+@@ -50,6 +50,22 @@ cc_prebuilt_library_shared {
+ 	product_specific: true,
+ }
+ 
++cc_prebuilt_library_shared {
++  name: "libjni_latinimegoogle",
++  owner: "google",
++  strip: {
++    none: true,
++  },
++  target: {
++    android_arm: { srcs: [ "proprietary/product/lib/libjni_latinimegoogle.so" ] },
++    android_arm64: { srcs: [ "proprietary/product/lib64/libjni_latinimegoogle.so" ] }
++  },
++  compile_multilib: "both",
++  check_elf_files: false,
++  prefer: true,
++  product_specific: true,
++}
++
+ cc_prebuilt_library_shared {
+ 	name: "lib-imsvideocodec",
+ 	owner: "google",
+diff --git a/barbet-vendor.mk b/barbet-vendor.mk
+--- a/barbet-vendor.mk
++++ b/barbet-vendor.mk
+@@ -1233,6 +1233,7 @@ PRODUCT_PACKAGES += \
+     libipebpsstriping \
+     libizat_core \
+     libjnihelper \
++    libjni_latinimegoogle \
+     libkeymasterdeviceutils \
+     libkeymasterprovision \
+     libkeymasterutils \
+

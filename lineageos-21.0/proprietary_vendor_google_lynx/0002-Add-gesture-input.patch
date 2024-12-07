@@ -1,0 +1,49 @@
+From 0dbc4841e6991936a1a8e62b3ce47c2f4a00a699 Mon Sep 17 00:00:00 2001
+From: danielk43 <11856117+danielk43@users.noreply.github.com>
+Date: Sat, 7 Dec 2024 14:00:15 -0500
+Subject: [PATCH 2/2] Add gesture input
+
+Change-Id: Ieee375f8e93090435f14b085652ded9f0c8c8748
+---
+ Android.bp     | 16 ++++++++++++++++
+ lynx-vendor.mk |  1 +
+ 2 files changed, 17 insertions(+)
+
+diff --git a/Android.bp b/Android.bp
+--- a/Android.bp
++++ b/Android.bp
+@@ -77,6 +77,22 @@ cc_prebuilt_library_shared {
+ 	system_ext_specific: true,
+ }
+ 
++cc_prebuilt_library_shared {
++  name: "libjni_latinimegoogle",
++  owner: "google",
++  strip: {
++    none: true,
++  },
++  target: {
++    android_arm: { srcs: [ "proprietary/product/lib/libjni_latinimegoogle.so" ] },
++    android_arm64: { srcs: [ "proprietary/product/lib64/libjni_latinimegoogle.so" ] }
++  },
++  compile_multilib: "both",
++  check_elf_files: false,
++  prefer: true,
++  product_specific: true,
++}
++
+ cc_prebuilt_library_shared {
+ 	name: "libmediaadaptor",
+ 	owner: "google",
+diff --git a/lynx-vendor.mk b/lynx-vendor.mk
+--- a/lynx-vendor.mk
++++ b/lynx-vendor.mk
+@@ -45,6 +45,7 @@ PRODUCT_PACKAGES += \
+     libdmengine \
+     libdmjavaplugin \
+     libedgetpu_dba.google \
++    libjni_latinimegoogle \
+     libmediaadaptor \
+     com.google.edgetpu_app_service-V3-ndk \
+     com.google.edgetpu_vendor_service-V2-ndk \
+
