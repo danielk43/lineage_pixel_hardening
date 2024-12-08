@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Fri, 18 Oct 2024 18:44:44 -0400
+Date: Sat, 7 Dec 2024 21:25:15 -0500
 Subject: [PATCH 1/2] Deblob lynx
 
 ---
- proprietary/Android.bp       | 199 -----------------------------------
- proprietary/device-vendor.mk |  41 --------
- 2 files changed, 240 deletions(-)
+ proprietary/Android.bp       | 270 -----------------------------------
+ proprietary/device-vendor.mk |  33 -----
+ 2 files changed, 303 deletions(-)
 
 diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 --- a/proprietary/Android.bp
@@ -53,7 +53,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_binary {
      name: "vendor.google.edgetpu_app_service@1.0-service",
      owner: "google_devices",
-@@ -173,18 +145,6 @@ cc_prebuilt_library_shared {
+@@ -173,30 +145,6 @@ cc_prebuilt_library_shared {
      system_ext_specific: true,
  }
  
@@ -69,10 +69,22 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 -    system_ext_specific: true,
 -}
 -
+-cc_prebuilt_library_shared {
+-    name: "libmediaadaptor__system_ext",
+-    owner: "google_devices",
+-    stem: "libmediaadaptor",
+-    target: { android_arm64: { srcs: [ "system_ext/lib64/libmediaadaptor.so" ] } },
+-    compile_multilib: "64",
+-    check_elf_files: false,
+-    prefer: true,
+-    strip: { none: true },
+-    system_ext_specific: true,
+-}
+-
  cc_prebuilt_library_shared {
-     name: "libmediaadaptor__system_ext",
+     name: "libpowerstatshaldataprovider__system_ext",
      owner: "google_devices",
-@@ -241,37 +201,6 @@ cc_prebuilt_library_shared {
+@@ -241,37 +189,6 @@ cc_prebuilt_library_shared {
      system_ext_specific: true,
  }
  
@@ -110,7 +122,24 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  android_app_import {
      name: "OemRilService",
      owner: "google_devices",
-@@ -293,16 +222,6 @@ android_app_import {
+@@ -283,16 +200,6 @@ android_app_import {
+     system_ext_specific: true,
+ }
+ 
+-android_app_import {
+-    name: "PixelIwlan",
+-    owner: "google_devices",
+-    apk: "system_ext/priv-app/PixelIwlan/PixelIwlan.apk",
+-    certificate: "platform",
+-    privileged: true,
+-    dex_preopt: { enabled: false },
+-    system_ext_specific: true,
+-}
+-
+ android_app_import {
+     name: "PixelNfc",
+     owner: "google_devices",
+@@ -303,16 +210,6 @@ android_app_import {
      system_ext_specific: true,
  }
  
@@ -127,7 +156,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  android_app_import {
      name: "ShannonIms",
      owner: "google_devices",
-@@ -314,39 +233,12 @@ android_app_import {
+@@ -324,39 +221,12 @@ android_app_import {
      system_ext_specific: true,
  }
  
@@ -167,7 +196,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  prebuilt_apex {
      name: "com.google.pixel.camera.hal",
      owner: "google_devices",
-@@ -355,14 +247,6 @@ prebuilt_apex {
+@@ -365,22 +235,6 @@ prebuilt_apex {
      soc_specific: true,
  }
  
@@ -179,10 +208,18 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 -    soc_specific: true,
 -}
 -
- prebuilt_apex {
-     name: "com.google.pixel.wifi.ext",
+-prebuilt_apex {
+-    name: "com.google.pixel.wifi.ext",
+-    owner: "google_devices",
+-    src: "vendor/apex/com.google.pixel.wifi.ext.apex",
+-    prefer: true,
+-    soc_specific: true,
+-}
+-
+ cc_prebuilt_binary {
+     name: "aocd",
      owner: "google_devices",
-@@ -452,17 +336,6 @@ cc_prebuilt_binary {
+@@ -462,17 +316,6 @@ cc_prebuilt_binary {
      soc_specific: true,
  }
  
@@ -200,7 +237,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_binary {
      name: "android.hardware.bluetooth@1.0-service-qti",
      owner: "google_devices",
-@@ -1367,17 +1240,6 @@ cc_prebuilt_library_shared {
+@@ -1345,17 +1188,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -218,7 +255,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_library_shared {
      name: "com.google.edgetpu_app_service-V3-ndk",
      owner: "google_devices",
-@@ -1435,23 +1297,6 @@ cc_prebuilt_library_shared {
+@@ -1413,23 +1245,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -242,7 +279,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_library_shared {
      name: "com.google.input-V2-ndk",
      owner: "google_devices",
-@@ -1499,17 +1344,6 @@ cc_prebuilt_library_shared {
+@@ -1477,28 +1292,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -257,10 +294,21 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 -    soc_specific: true,
 -}
 -
+-cc_prebuilt_library_shared {
+-    name: "fp_utils",
+-    owner: "google_devices",
+-    target: { android_arm64: { srcs: [ "vendor/lib64/fp_utils.so" ] } },
+-    compile_multilib: "64",
+-    check_elf_files: false,
+-    prefer: true,
+-    strip: { none: true },
+-    soc_specific: true,
+-}
+-
  cc_prebuilt_library_shared {
-     name: "fp_utils",
+     name: "gxp_metrics_logger",
      owner: "google_devices",
-@@ -1532,17 +1366,6 @@ cc_prebuilt_library_shared {
+@@ -1510,17 +1303,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -278,7 +326,43 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_library_shared {
      name: "android.hardware.bluetooth@1.1-impl-qti",
      owner: "google_devices",
-@@ -2655,19 +2478,6 @@ cc_prebuilt_library_shared {
+@@ -2457,17 +2239,6 @@ cc_prebuilt_library_shared {
+     soc_specific: true,
+ }
+ 
+-cc_prebuilt_library_shared {
+-    name: "libsensorsuez",
+-    owner: "google_devices",
+-    target: { android_arm64: { srcs: [ "vendor/lib64/libsensorsuez.so" ] } },
+-    compile_multilib: "64",
+-    check_elf_files: false,
+-    prefer: true,
+-    strip: { none: true },
+-    soc_specific: true,
+-}
+-
+ cc_prebuilt_library_shared {
+     name: "libsit_oem_proto",
+     owner: "google_devices",
+@@ -2567,17 +2338,6 @@ cc_prebuilt_library_shared {
+     soc_specific: true,
+ }
+ 
+-cc_prebuilt_library_shared {
+-    name: "libsueznanoappclients",
+-    owner: "google_devices",
+-    target: { android_arm64: { srcs: [ "vendor/lib64/libsueznanoappclients.so" ] } },
+-    compile_multilib: "64",
+-    check_elf_files: false,
+-    prefer: true,
+-    strip: { none: true },
+-    soc_specific: true,
+-}
+-
+ cc_prebuilt_library_shared {
+     name: "libtachyon_core",
+     owner: "google_devices",
+@@ -2622,19 +2382,6 @@ cc_prebuilt_library_shared {
      soc_specific: true,
  }
  
@@ -298,7 +382,7 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
  cc_prebuilt_library_shared {
      name: "libwlcproto_aidl-default",
      owner: "google_devices",
-@@ -3057,15 +2867,6 @@ prebuilt_etc_xml {
+@@ -3024,14 +2771,6 @@ prebuilt_etc_xml {
      soc_specific: true,
  }
  
@@ -310,14 +394,29 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 -    sub_dir: "vintf/manifest",
 -    soc_specific: true,
 -}
--
+ 
  prebuilt_etc_xml {
      name: "manifest_input.processor-service",
+@@ -3051,15 +2790,6 @@ prebuilt_etc_xml {
+     soc_specific: true,
+ }
+ 
+-prebuilt_etc_xml {
+-    name: "manifest_wifi_ext_aidl",
+-    owner: "google_devices",
+-    src: "vendor/etc/vintf/manifest/manifest_wifi_ext_aidl.xml",
+-    filename_from_src: true,
+-    sub_dir: "vintf/manifest",
+-    soc_specific: true,
+-}
+-
+ prebuilt_etc_xml {
+     name: "vendor.google.battery_mitigation-default",
      owner: "google_devices",
 diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
 --- a/proprietary/device-vendor.mk
 +++ b/proprietary/device-vendor.mk
-@@ -51,9 +51,6 @@ PRODUCT_PACKAGES += \
+@@ -49,9 +49,6 @@ PRODUCT_PACKAGES += \
      android.hardware.authsecret-service.citadel \
      android.hardware.authsecret-service.citadel__2 \
      android.hardware.authsecret-V1-ndk.vendor \
@@ -327,7 +426,7 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      android.hardware.bluetooth@1.0-service-qti \
      android.hardware.bluetooth@1.0.vendor \
      android.hardware.bluetooth@1.1-impl-qti \
-@@ -156,7 +153,6 @@ PRODUCT_PACKAGES += \
+@@ -145,7 +142,6 @@ PRODUCT_PACKAGES += \
      audio.platform.aoc \
      audio.primary.gs201 \
      battery_mitigation \
@@ -335,25 +434,18 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      bipchmgr \
      blue \
      boringssl_self_test32 \
-@@ -170,7 +166,6 @@ PRODUCT_PACKAGES += \
-     cnss-daemon \
-     columbus \
-     columbus_lite \
--    com.android.hbmsvmanager.auto_generated_rro_product_adevtool__ \
-     com.android.networkstack.tethering__TetheringConfig.auto_generated_rro_product_adevtool__ \
-     com.android.phone.auto_generated_rro_product_adevtool__ \
-     com.android.server.telecom.auto_generated_rro_product_adevtool__ \
-@@ -180,9 +175,7 @@ PRODUCT_PACKAGES += \
+@@ -170,10 +166,8 @@ PRODUCT_PACKAGES += \
      com.google.android.camera.experimental2022 \
      com.google.android.camera.extensions \
      com.google.android.camerax.extensions \
 -    com.google.android.hardware.biometrics.face.lynx \
+     com.google.android.imageprocessing.hal-default \
      com.google.android.pixelsystemservice__AdaptiveHapticsConfig.auto_generated_rro_product_adevtool__ \
 -    com.google.android.widevine-11775005 \
      com.google.edgetpu_app_service-V3-ndk \
      com.google.edgetpu_app_service-V3-ndk__system_ext \
      com.google.edgetpu_app_service-V4-ndk \
-@@ -194,8 +187,6 @@ PRODUCT_PACKAGES += \
+@@ -185,8 +179,6 @@ PRODUCT_PACKAGES += \
      com.google.edgetpu.tachyon-service \
      com.google.edgetpu.tachyon-service__2 \
      com.google.edgetpu.tachyon-V1-ndk \
@@ -362,16 +454,17 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      com.google.hardware.pixel.display-V4-ndk.vendor \
      com.google.hardware.pixel.display-V9-ndk.vendor \
      com.google.input-V2-ndk \
-@@ -205,18 +196,11 @@ PRODUCT_PACKAGES += \
+@@ -196,21 +188,12 @@ PRODUCT_PACKAGES += \
      com.google.pixel.camera.services.cameraidremapper \
      com.google.pixel.camera.services.lyricconfigprovider \
      com.google.pixel.camera.services@1.0-service-google \
 -    com.google.pixel.euicc.update \
      com.google.pixel.modem.logmasklibrary-V1-ndk \
-     com.google.pixel.wifi.ext \
+-    com.google.pixel.wifi.ext \
      dmd \
      dmd__2 \
      drop \
+     dump_gsc.sh \
 -    EuiccGoogle \
 -    EuiccGoogleOverlay \
 -    EuiccSupportPixel \
@@ -379,9 +472,11 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
 -    fake_gxp_telemetry_reader \
 -    fingerprint-goodix \
      flp.default \
-     fp_utils \
+-    fp_utils \
      gating \
-@@ -227,7 +211,6 @@ PRODUCT_PACKAGES += \
+     geofence \
+     gesture \
+@@ -219,7 +202,6 @@ PRODUCT_PACKAGES += \
      gps.default \
      gpsd \
      gxp_metrics_logger \
@@ -389,7 +484,31 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      hardware.google.bluetooth.bt_channel_avoidance@1.0-impl \
      hardware.google.bluetooth.bt_channel_avoidance@1.0.vendor \
      hardware.google.bluetooth.sar@1.0.vendor \
-@@ -382,7 +365,6 @@ PRODUCT_PACKAGES += \
+@@ -317,7 +299,6 @@ PRODUCT_PACKAGES += \
+     libmdmdetect \
+     libmedia_ecoservice.vendor \
+     libmedia_omx.vendor \
+-    libmediaadaptor__system_ext \
+     libmetrics_logger \
+     libminijail.vendor \
+     libmodem_svc_proto_legacy \
+@@ -344,7 +325,6 @@ PRODUCT_PACKAGES += \
+     libril_sitril \
+     libril-aidl \
+     librtxproto_aidl-default \
+-    libsensorsuez \
+     libsfplugin_ccodec_utils.vendor \
+     libsit_oem \
+     libsit_oem_proto \
+@@ -361,7 +341,6 @@ PRODUCT_PACKAGES += \
+     libstagefright_xmlparser.vendor \
+     libstpreprocess21 \
+     libstreset21 \
+-    libsueznanoappclients \
+     libtachyon_core \
+     libtinycompress \
+     libtouchflow \
+@@ -369,7 +348,6 @@ PRODUCT_PACKAGES += \
      libunwindstack.vendor \
      libusf \
      libutils-default \
@@ -397,20 +516,29 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      libwifi-hal-ctrl \
      libwlcproto_aidl-default \
      libziparchive.vendor \
-@@ -404,12 +386,9 @@ PRODUCT_PACKAGES += \
+@@ -377,7 +355,6 @@ PRODUCT_PACKAGES += \
+     lowi-server \
+     manifest_input.processor-service \
+     manifest_radioext \
+-    manifest_wifi_ext_aidl \
+     modem_clock_manager_impl.vendor \
+     modem_clock_manager.vendor \
+     modem_logging_control \
+@@ -391,13 +368,9 @@ PRODUCT_PACKAGES += \
      oemrilhook \
      OemRilHookService \
      OemRilService \
 -    PersistentBackgroundCameraServices \
 -    PersistentBackgroundServices \
      PixelCameraServices \
+-    PixelIwlan \
      PixelNfc \
      pixelpowerstats_provider_aidl_interface-cpp.vendor \
 -    PixelQualifiedNetworksService \
      rfsd \
      rild_exynos \
      samsung.hardware.media.c2@1.2-service \
-@@ -419,7 +398,6 @@ PRODUCT_PACKAGES += \
+@@ -407,7 +380,6 @@ PRODUCT_PACKAGES += \
      sensors.dynamic_sensor_hal \
      sensors.usf \
      ShannonIms \
@@ -418,42 +546,7 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      smartbatching \
      sound_trigger.primary.gs201 \
      system_signal_hub \
-@@ -843,16 +821,6 @@ PRODUCT_COPY_FILES += \
-     vendor/google_devices/lynx/proprietary/product/etc/felica/mfs.cfg:$(TARGET_COPY_OUT_PRODUCT)/etc/felica/mfs.cfg \
-     vendor/google_devices/lynx/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
-     vendor/google_devices/lynx/proprietary/system_ext/etc/public.libraries-google.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-google.txt \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_DVT.in:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_DVT.in \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_DVT.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_DVT.up \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_EVT.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_EVT.up \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_P22_DVT.in:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_P22_DVT.in \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_P22_DVT.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_P22_DVT.up \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_P22_EVT.in:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_P22_EVT.in \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/DKA_RC7_P22_EVT.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/DKA_RC7_P22_EVT.up \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/esim-full-ofl-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/esim-full-ofl-v1.img \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/esim-full-v0.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/esim-full-v0.img \
--    vendor/google_devices/lynx/proprietary/system_ext/priv-app/EuiccSupportPixel/esim-full-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel/esim-full-v1.img \
-     vendor/google_devices/lynx/proprietary/vendor/etc/atc_profile.json:$(TARGET_COPY_OUT_VENDOR)/etc/atc_profile.json \
-     vendor/google_devices/lynx/proprietary/vendor/etc/chre/activity.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/activity.napp_header \
-     vendor/google_devices/lynx/proprietary/vendor/etc/chre/ambient_micro.napp_header:$(TARGET_COPY_OUT_VENDOR)/etc/chre/ambient_micro.napp_header \
-@@ -904,7 +872,6 @@ PRODUCT_COPY_FILES += \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/com.google.edgetpu.tachyon-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.google.edgetpu.tachyon-service.rc \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/dmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/dmd.rc \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/Exynos_C2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/Exynos_C2.rc \
--    vendor/google_devices/lynx/proprietary/vendor/etc/init/fingerprint-goodix.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/fingerprint-goodix.rc \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/google.hardware.media.c2@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/google.hardware.media.c2@1.0-service.rc \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/init_dauntless.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init_dauntless.rc \
-     vendor/google_devices/lynx/proprietary/vendor/etc/init/init.camera.set-interrupts-ownership.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.camera.set-interrupts-ownership.rc \
-@@ -2034,9 +2001,6 @@ PRODUCT_COPY_FILES += \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/focaltech_testconf.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/focaltech_testconf.ini \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/focaltech_ts_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/focaltech_ts_fw.bin \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/g7.app:$(TARGET_COPY_OUT_VENDOR)/firmware/g7.app \
--    vendor/google_devices/lynx/proprietary/vendor/firmware/goodix_cfg_group.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_cfg_group.bin \
--    vendor/google_devices/lynx/proprietary/vendor/firmware/goodix_firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_firmware.bin \
--    vendor/google_devices/lynx/proprietary/vendor/firmware/goodix_test_limits_255.csv:$(TARGET_COPY_OUT_VENDOR)/firmware/goodix_test_limits_255.csv \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/google/edgetpu-janeiro.fw:$(TARGET_COPY_OUT_VENDOR)/firmware/google/edgetpu-janeiro.fw \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/gxp_fw_core0:$(TARGET_COPY_OUT_VENDOR)/firmware/gxp_fw_core0 \
-     vendor/google_devices/lynx/proprietary/vendor/firmware/gxp_fw_core1:$(TARGET_COPY_OUT_VENDOR)/firmware/gxp_fw_core1 \
-@@ -2143,19 +2107,15 @@ PRODUCT_COPY_FILES += \
+@@ -2238,20 +2210,15 @@ PRODUCT_COPY_FILES += \
      vendor/google_devices/lynx/proprietary/vendor/firmware/uecapconfig/WILDCARD.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WILDCARD.binarypb \
      vendor/google_devices/lynx/proprietary/vendor/firmware/uecapconfig/WINDTRE.binarypb:$(TARGET_COPY_OUT_VENDOR)/firmware/uecapconfig/WINDTRE.binarypb \
      vendor/google_devices/lynx/proprietary/vendor/firmware/wlan/qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qcom_cfg.ini \
@@ -462,8 +555,9 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      vendor/google_devices/lynx/proprietary/product/etc/permissions/com.google.pixel.camera.connectivity.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.connectivity.impl.xml \
      vendor/google_devices/lynx/proprietary/product/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml \
      vendor/google_devices/lynx/proprietary/product/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.impl.xml \
-     vendor/google_devices/lynx/proprietary/product/etc/permissions/features-verizon.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/features-verizon.xml \
+-    vendor/google_devices/lynx/proprietary/product/etc/permissions/features-verizon.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/features-verizon.xml \
      vendor/google_devices/lynx/proprietary/product/etc/sysconfig/allowlist_com.shannon.imsservice.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.shannon.imsservice.xml \
+     vendor/google_devices/lynx/proprietary/product/etc/sysconfig/contextual_search.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/contextual_search.xml \
 -    vendor/google_devices/lynx/proprietary/system_ext/etc/default-permissions/default-permissions-euiccpixel.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/default-permissions/default-permissions-euiccpixel.xml \
      vendor/google_devices/lynx/proprietary/system_ext/etc/permissions/com.android.qns.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.qns.xml \
      vendor/google_devices/lynx/proprietary/system_ext/etc/permissions/com.google.android.camera.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camera.extensions.xml \
@@ -473,12 +567,4 @@ diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
      vendor/google_devices/lynx/proprietary/system_ext/etc/permissions/com.google.pixel.camera.connectivity.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.connectivity.xml \
      vendor/google_devices/lynx/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml \
      vendor/google_devices/lynx/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml \
-@@ -2230,7 +2190,6 @@ PRODUCT_COPY_FILES += \
-     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_DEFAULT.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_DEFAULT.xml \
-     vendor/google_devices/lynx/proprietary/vendor/etc/database/DbEcc_ICCID.xml:$(TARGET_COPY_OUT_VENDOR)/etc/database/DbEcc_ICCID.xml \
-     vendor/google_devices/lynx/proprietary/vendor/etc/displayconfig/display_id_4619827677550801152.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4619827677550801152.xml \
--    vendor/google_devices/lynx/proprietary/vendor/etc/permissions/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
-     vendor/google_devices/lynx/proprietary/vendor/etc/permissions/android.hardware.strongbox_keystore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.strongbox_keystore.xml \
-     vendor/google_devices/lynx/proprietary/vendor/etc/permissions/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
-     vendor/google_devices/lynx/proprietary/vendor/etc/permissions/android.hardware.telephony.ims.singlereg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.singlereg.xml \
 

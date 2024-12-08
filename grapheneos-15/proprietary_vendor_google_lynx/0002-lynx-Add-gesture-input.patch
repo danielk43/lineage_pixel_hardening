@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: danielk43 <11856117+danielk43@users.noreply.github.com>
-Date: Fri, 18 Oct 2024 19:01:43 -0400
-Subject: [PATCH 2/2] Add gesture input raven
+Date: Fri, 18 Oct 2024 18:47:04 -0400
+Subject: [PATCH 2/2] lynx: Add gesture input
 
 ---
  proprietary/Android.bp       | 14 ++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 2/2] Add gesture input raven
 diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 --- a/proprietary/Android.bp
 +++ b/proprietary/Android.bp
-@@ -31,6 +31,20 @@ cc_prebuilt_library_shared {
+@@ -25,6 +25,20 @@ cc_prebuilt_library_shared {
      product_specific: true,
  }
  
@@ -35,12 +35,12 @@ diff --git a/proprietary/Android.bp b/proprietary/Android.bp
 diff --git a/proprietary/device-vendor.mk b/proprietary/device-vendor.mk
 --- a/proprietary/device-vendor.mk
 +++ b/proprietary/device-vendor.mk
-@@ -291,6 +291,7 @@ PRODUCT_PACKAGES += \
-     libhwbinder.vendor \
+@@ -287,6 +287,7 @@ PRODUCT_PACKAGES += \
+     libidl \
      libion_exynos \
      libion.vendor \
 +    libjni_latinimegoogle__product \
      libjson \
-     libjsoncpp.vendor:32 \
-     libkeymint_support.vendor:64 \
+     libkeymint_support.vendor \
+     libloc_base_util \
 
